@@ -16,15 +16,15 @@ import com.paypal.android.sdk.payments.PaymentActivity;
 import com.paypal.android.sdk.payments.PaymentConfirmation;
 
 public class MainActivity extends Activity {
-	
-	// set to PaymentActivity.ENVIRONMENT_LIVE to move real money.
-	// set to PaymentActivity.ENVIRONMENT_SANDBOX to use your test credentials from https://developer.paypal.com
-	// set to PaymentActivity.ENVIRONMENT_NO_NETWORK to kick the tires without communicating to PayPal's servers.
-	private static final String CONFIG_ENVIRONMENT = PaymentActivity.ENVIRONMENT_NO_NETWORK;
-	
-	// note that these credentials will differ between live & sandbox environments.
-	private static final String CONFIG_CLIENT_ID = "credential from developer.paypal.com";
-	private static final String CONFIG_RECEIVER_EMAIL = "matching paypal email address"; // likely the -facilitator account for sandbox.
+    
+    // set to PaymentActivity.ENVIRONMENT_LIVE to move real money.
+    // set to PaymentActivity.ENVIRONMENT_SANDBOX to use your test credentials from https://developer.paypal.com
+    // set to PaymentActivity.ENVIRONMENT_NO_NETWORK to kick the tires without communicating to PayPal's servers.
+    private static final String CONFIG_ENVIRONMENT = PaymentActivity.ENVIRONMENT_NO_NETWORK;
+    
+    // note that these credentials will differ between live & sandbox environments.
+    private static final String CONFIG_CLIENT_ID = "credential from developer.paypal.com";
+    private static final String CONFIG_RECEIVER_EMAIL = "matching paypal email address"; // likely the -facilitator account for sandbox.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,27 +60,27 @@ public class MainActivity extends Activity {
     
     @Override
     protected void onActivityResult (int requestCode, int resultCode, Intent data) {
-    	if (resultCode == Activity.RESULT_OK) {
-    		PaymentConfirmation confirm = data.getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
-    		if (confirm != null) {
-    			try {
-    				Log.i("paymentExample", confirm.toJSONObject().toString(4));
+        if (resultCode == Activity.RESULT_OK) {
+            PaymentConfirmation confirm = data.getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
+            if (confirm != null) {
+                try {
+                    Log.i("paymentExample", confirm.toJSONObject().toString(4));
 
-    				// TODO: send 'confirm' to your server for verification.
-    				// see https://developer.paypal.com/webapps/developer/docs/integration/mobile/verify-mobile-payment/
-    				// for more details.
+                    // TODO: send 'confirm' to your server for verification.
+                    // see https://developer.paypal.com/webapps/developer/docs/integration/mobile/verify-mobile-payment/
+                    // for more details.
 
-    			} catch (JSONException e) {
-    				Log.e("paymentExample", "an extremely unlikely failure occurred: ", e);
-    			}
-    		}
-    	}
-    	else if (resultCode == Activity.RESULT_CANCELED) {
-    		Log.i("paymentExample", "The user canceled.");
-    	}
-    	else if (resultCode == PaymentActivity.RESULT_PAYMENT_INVALID) {
-    		Log.i("paymentExample", "An invalid payment was submitted. Please see the docs.");
-    	}
+                } catch (JSONException e) {
+                    Log.e("paymentExample", "an extremely unlikely failure occurred: ", e);
+                }
+            }
+        }
+        else if (resultCode == Activity.RESULT_CANCELED) {
+            Log.i("paymentExample", "The user canceled.");
+        }
+        else if (resultCode == PaymentActivity.RESULT_PAYMENT_INVALID) {
+            Log.i("paymentExample", "An invalid payment was submitted. Please see the docs.");
+        }
     }
     
     @Override
