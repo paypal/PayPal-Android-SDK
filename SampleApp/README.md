@@ -1,8 +1,6 @@
 PayPal Android SDK Sample App
 =============================
 
-Important: You must unzip the SDK into this directory, just like you would for your own project:
+Mac and Linux users can build this sample app as-is.
 
-```
-unzip ../PayPal-Android-SDK-*.zip
-```
+Windows users need to replace the `libs` symlink file with a copy of the SDK `libs` directory.
