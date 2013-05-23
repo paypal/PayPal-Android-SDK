@@ -24,7 +24,8 @@ public class MainActivity extends Activity {
     
     // note that these credentials will differ between live & sandbox environments.
     private static final String CONFIG_CLIENT_ID = "credential from developer.paypal.com";
-    private static final String CONFIG_RECEIVER_EMAIL = "matching paypal email address"; // likely the -facilitator account for sandbox.
+    // when testing in sandbox, this is likely the -facilitator email address. 
+    private static final String CONFIG_RECEIVER_EMAIL = "matching paypal email address"; 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
