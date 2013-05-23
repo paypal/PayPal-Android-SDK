@@ -45,10 +45,7 @@
         <activity
             android:name="io.card.payment.CardIOActivity"
             android:configChanges="keyboardHidden|orientation" />
-        <activity
-            android:name="io.card.payment.DataEntryActivity"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity android:name="io.card.payment.DataEntryActivity" />
         
     </application>
 
