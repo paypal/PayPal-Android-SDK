@@ -61,9 +61,6 @@
 -keepclassmembers class io.card.payment.DetectionInfo {
     public *;
 }
--keepclassmembers class io.card.payment.LocalizableStrings {
-	*;
-}
 
 -keep class io.card.payment.CreditCard
 -keep class io.card.payment.CreditCard$1

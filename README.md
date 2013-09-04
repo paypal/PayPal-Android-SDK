@@ -204,6 +204,19 @@ The sample app provides a more complete example. However, at minimum, you must:
 
 During development, set the intent extra `EXTRA_PAYPAL_ENVIRONMENT` to `ENVIRONMENT_NO_NETWORK` or `ENVIRONMENT_SANDBOX` to avoid moving real money.
 
+## International Support
+
+### Localizations
+
+The SDK has built-in translations for many languages and locales. See [javadocs](http://paypal.github.io/PayPal-Android-SDK/) files for a complete list.
+
+### Currencies
+
+The SDK supports multiple currencies. See the REST API country and currency documentation for a complete, up-to-date list.
+
+Note that currency support differs for credit card versus PayPal payments. Unless you disable credit card acceptance (via the `PaymentActivity.EXTRA_SKIP_CREDIT_CARD` intent extra), we recommend limiting transactions to currencies supported by both payment types. Currently these are: USD, GBP, CAD, EUR, JPY.
+
+If your app initiates a transaction with a currency that turns out to be unsupported for the user's selected payment type, then the SDK will display an error to the user and write a message to the console log.
 
 ## Hints & Tips
 

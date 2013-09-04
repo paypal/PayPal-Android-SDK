@@ -1,6 +1,15 @@
 PayPal Android SDK release notes
 ================================
 
+1.1.2
+-----
+* Re-add `Version` class
+* Update card.io library to 3.1.1
+* Support all currencies that are curently accepted by the REST APIs.  See [README](README.md) for details.
+* Fix various localizations
+* Additional localization: ko (Korean)
+* Minor UI cleanup (including [issue 4](https://github.com/paypal/PayPal-Android-SDK/issues/4))
+
 1.1.0
 -----
 * Bug fixes
