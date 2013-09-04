@@ -212,7 +212,7 @@ The SDK has built-in translations for many languages and locales. See [javadocs]
 
 ### Currencies
 
-The SDK supports multiple currencies. See the REST API country and currency documentation for a complete, up-to-date list.
+The SDK supports multiple currencies. See the [REST API country and currency documentation](https://developer.paypal.com/webapps/developer/docs/integration/direct/rest_api_payment_country_currency_support/) for a complete, up-to-date list.
 
 Note that currency support differs for credit card versus PayPal payments. Unless you disable credit card acceptance (via the `PaymentActivity.EXTRA_SKIP_CREDIT_CARD` intent extra), we recommend limiting transactions to currencies supported by both payment types. Currently these are: USD, GBP, CAD, EUR, JPY.
 
