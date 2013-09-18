@@ -12,14 +12,19 @@ For detailed reference, see the [SDK reference](http://paypal.github.io/PayPal-A
 
 ### A note about older libraries
 
-PayPal is replacing the [Mobile Payments Libraries (MPL)](https://developer.paypal.com/webapps/developer/docs/classic/mobile/gs_MPL/)
-with the PayPal iOS/Android SDK. The PayPal iOS/Android SDK is currently available in the US,
-with more country support coming soon. US developers should upgrade now for more features
-and a better mobile experience. Non-US developers can continue to use MPL for the time
-being. Issues related to MPL should be filed in the [sdk-packages repo](https://github.com/paypal/sdk-packages/).
 
-Developers with existing Express Checkout integrations or who want additional
-features such as authorization and capture, may wish to use [Mobile Express Checkout](https://developer.paypal.com/webapps/developer/docs/classic/mobile/gs_MEC/)
+PayPal is in the process of replacing the older "Mobile Payments Libraries" (MPL) with the new PayPal Android and iOS SDKs. 
+The new Mobile SDKs are based on the PayPal REST API, while the older MPL uses the Adaptive Payments API.
+
+Until features such as third-party, parallel, and chained payments are available, you can use MPL:
+
+ - [MPL on GitHub](https://github.com/paypal/sdk-packages/tree/gh-pages/MPL)
+ - [MPL Documentation](https://developer.paypal.com/webapps/developer/docs/classic/mobile/gs_MPL/)
+
+Issues related to MPL should be filed in the [sdk-packages repo](https://github.com/paypal/sdk-packages/).
+
+Developers with existing Express Checkout integrations or who want additional features such as 
+authorization and capture, may wish to use [Mobile Express Checkout](https://developer.paypal.com/webapps/developer/docs/classic/mobile/gs_MEC/)
 in a webview.
 
 
@@ -97,7 +102,6 @@ You will need to include the following in your project's `AndroidManifest.xml`.
     <activity android:name="com.paypal.android.sdk.payments.LoginActivity" />
     <activity android:name="com.paypal.android.sdk.payments.PaymentMethodActivity" />
     <activity android:name="com.paypal.android.sdk.payments.PaymentConfirmActivity" />
-    <activity android:name="com.paypal.android.sdk.payments.PaymentCompletedActivity" />
 
     <activity
         android:name="io.card.payment.CardIOActivity"

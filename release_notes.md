@@ -1,6 +1,12 @@
 PayPal Android SDK release notes
 ================================
 
+1.2.0
+-----
+* Eliminate the final "Complete" screen
+* Fix Hebrew phone settings detection bug
+* Update card.io library to 3.1.2
+
 1.1.2
 -----
 * Re-add `Version` class
