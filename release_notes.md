@@ -1,6 +1,11 @@
 PayPal Android SDK release notes
 ================================
 
+1.2.1
+-----
+* Update card.io library to 3.1.3
+* Fix issue [#11: release/debug UI differences](https://github.com/paypal/PayPal-Android-SDK/issues/11)
+
 1.2.0
 -----
 * Eliminate the final "Complete" screen
