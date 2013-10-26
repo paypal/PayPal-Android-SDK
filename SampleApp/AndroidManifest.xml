@@ -40,8 +40,9 @@
         <activity android:name="com.paypal.android.sdk.payments.PaymentActivity" />
         <activity android:name="com.paypal.android.sdk.payments.LoginActivity" />
         <activity android:name="com.paypal.android.sdk.payments.PaymentMethodActivity" />
-        <activity android:name="com.paypal.android.sdk.payments.PaymentConfirmActivity" />
         <activity android:name="com.paypal.android.sdk.payments.PaymentCompletedActivity" />
+        
+        <!-- in case card.io is used for card scanning -->
         <activity
             android:name="io.card.payment.CardIOActivity"
             android:configChanges="keyboardHidden|orientation" />
