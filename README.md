@@ -203,6 +203,15 @@ The sample app provides a more complete example. However, at minimum, you must:
 4. [Send the proof of payment to your servers for verification](https://developer.paypal.com/webapps/developer/docs/integration/mobile/verify-mobile-payment/),
      as well as any other data required for your business, such as fulfillment information.
 
+### Disabling card.io card scanning
+
+To accept credit cards through manual entry, but disable card scanning, remove `android.permission.CAMERA` and `android.permission.VIBRATE` permissions from `AndroidManifest.xml`.  In addition, it is safe to remove the camera scanner libraries by removing the following folders within the `lib` directory: `armeabi`, `armeabi-v7a`, `mips`, and `x86`. 
+
+If you wish to disable credit card support altogether, follow the above steps to reduce the permissions and sdk footprint, and add the following [extra](http://paypal.github.io/PayPal-Android-SDK/com/paypal/android/sdk/payments/PaymentActivity.html#EXTRA_SKIP_CREDIT_CARD) to the `PaymentActivity` initialization.
+
+```java
+intent.putExtra(PaymentActivity.EXTRA_SKIP_CREDIT_CARD, true);
+```
 
 ## Testing
 
