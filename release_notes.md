@@ -1,6 +1,10 @@
 PayPal Android SDK release notes
 ================================
 
+1.2.3
+-----
+* Fix issue where invalid currency amounts could be sent to the PayPal server.
+
 1.2.2
 -----
 * Fix login page layout issue [20](https://github.com/paypal/PayPal-Android-SDK/issues/20)
