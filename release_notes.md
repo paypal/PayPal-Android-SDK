@@ -1,6 +1,10 @@
 PayPal Android SDK release notes
 ================================
 
+1.2.4
+-----
+* Fix NumberFormatException on some payments in locales that use comma for decimal separator [34](https://github.com/paypal/PayPal-Android-SDK/issues/34)
+
 1.2.3
 -----
 * Fix issue where invalid currency amounts could be sent to the PayPal server.
