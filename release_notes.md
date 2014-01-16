@@ -1,6 +1,13 @@
 PayPal Android SDK release notes
 ================================
 
+1.2.5
+-----
+* Refactor code to eliminate spurious error message in LogCat [40](https://github.com/paypal/PayPal-Android-SDK/issues/40)
+* Fix validation of PayPalPayment.shortDescription where some credit card payments caused incorrect JSONException [41](https://github.com/paypal/PayPal-Android-SDK/issues/41)
+* Eliminate source of potential NPE [37](https://github.com/paypal/PayPal-Android-SDK/issues/37)
+* Update card.io lib to 3.1.4 (includes fixes for potential NPEs)
+
 1.2.4
 -----
 * Fix NumberFormatException on some payments in locales that use comma for decimal separator [34](https://github.com/paypal/PayPal-Android-SDK/issues/34)
