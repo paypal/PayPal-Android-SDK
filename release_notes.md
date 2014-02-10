@@ -1,6 +1,10 @@
 PayPal Android SDK release notes
 ================================
 
+1.2.6
+-----
+* Fix issue where PaymentActivity.EXTRA_DEFAULT_USER_EMAIL was not being handled properly in all cases [47](https://github.com/paypal/PayPal-Android-SDK/issues/47)
+
 1.2.5
 -----
 * Refactor code to eliminate spurious error message in LogCat [40](https://github.com/paypal/PayPal-Android-SDK/issues/40)

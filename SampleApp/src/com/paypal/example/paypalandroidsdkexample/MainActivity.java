@@ -52,7 +52,7 @@ public class MainActivity extends Activity {
         
         // It's important to repeat the clientId here so that the SDK has it if Android restarts your 
         // app midway through the payment UI flow.
-        intent.putExtra(PaymentActivity.EXTRA_CLIENT_ID, "credential-from-developer.paypal.com");
+        intent.putExtra(PaymentActivity.EXTRA_CLIENT_ID, CONFIG_CLIENT_ID);
         intent.putExtra(PaymentActivity.EXTRA_PAYER_ID, "your-customer-id-in-your-system");
         intent.putExtra(PaymentActivity.EXTRA_PAYMENT, thingToBuy);
         
