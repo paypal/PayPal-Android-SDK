@@ -1,6 +1,21 @@
 PayPal Android SDK release notes
 ================================
 
+2.0.0
+-----
+* Add Future Payment with PayPal support. Users can now authenticate and consent within an app using the SDK.  A user no longer needs to repeatedly enter credentials.
+	* Introduce a `PayPalFuturePaymentActivity`, which returns a `PayPalAuthorization` object.
+* Changes to payment feature:
+	* Change backend to use PayPal's new REST APIs for all SDK functions.  Now there is a single way to verify both credit card and PayPal payments.
+	* Introduce `PayPalPaymentDetails` to support payment details, including line-item subtotal amount, tax amount, and shipping amount.
+	* Single payments now include a payment`intent` to distinguish between:
+		1. immediate payment processing
+		2. payment authorization only, with subsequent payment capture from the merchant's server.
+* Use `PayPalConfiguration` object for common configuration across both single payment and future payment use cases.
+* For API errors, logging will now provide additional information, including a PayPal Debug-ID for MTS investigations.
+* Add support for directional controller interaction (for set-top boxes, game consoles, etc.).
+* Resolves issues with PayPal user passwords containing special characters.
+
 1.2.6
 -----
 * Fix issue where PaymentActivity.EXTRA_DEFAULT_USER_EMAIL was not being handled properly in all cases [47](https://github.com/paypal/PayPal-Android-SDK/issues/47)

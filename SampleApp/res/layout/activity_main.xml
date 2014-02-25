@@ -6,17 +6,39 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity" >
+    tools:context=".SampleActivity" >
 
-    <Button
-        android:id="@+id/buyItBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="20dp"
-        android:onClick="onBuyPressed"
-        android:text="Buy a thing" />
+   <LinearLayout
+       android:id="@+id/wrapper"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:layout_alignParentRight="true"
+       android:layout_centerVertical="true"
+       android:orientation="vertical" >
+
+       <Button
+           android:id="@+id/buyItBtn"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="20dp"
+           android:onClick="onBuyPressed"
+           android:text="Buy a Thing" />
+
+       <Button
+           android:id="@+id/futurePaymentBtn"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="20dp"
+           android:onClick="onFuturePaymentPressed"
+           android:text="Future Payment Consent" />
+       
+       <Button
+           android:id="@+id/futurePaymentPurchaseBtn"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="20dp"
+           android:onClick="onFuturePaymentPurchasePressed"
+           android:text="Future Payment Purchase" />
+   </LinearLayout>
 
 </RelativeLayout>

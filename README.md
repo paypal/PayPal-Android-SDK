@@ -1,239 +1,147 @@
 PayPal Android SDK
 ==================
 
-The PayPal Android SDK provides a software library that makes it easy for Android developers
-to accept both credit cards and PayPal directly within native mobile apps.
+The PayPal Android SDK makes it easy to add PayPal and credit card payments to mobile apps.
 
-For usage and integration instructions, see the
-[PayPal Android SDK Integration Guide](https://developer.paypal.com/webapps/developer/docs/integration/mobile/android-integration-guide/).
+## Contents
 
-For detailed reference, see the [SDK reference](http://paypal.github.io/PayPal-Android-SDK/).
-
-
-### A note about older libraries
-
-
-PayPal is in the process of replacing the older "Mobile Payments Libraries" (MPL) with the new PayPal Android and iOS SDKs. 
-The new Mobile SDKs are based on the PayPal REST API, while the older MPL uses the Adaptive Payments API.
-
-Until features such as third-party, parallel, and chained payments are available, you can use MPL:
-
- - [MPL on GitHub](https://github.com/paypal/sdk-packages/tree/gh-pages/MPL)
- - [MPL Documentation](https://developer.paypal.com/webapps/developer/docs/classic/mobile/gs_MPL/)
-
-Issues related to MPL should be filed in the [sdk-packages repo](https://github.com/paypal/sdk-packages/).
-
-Developers with existing Express Checkout integrations or who want additional features such as 
-authorization and capture, may wish to use [Mobile Express Checkout](https://developer.paypal.com/webapps/developer/docs/classic/mobile/gs_MEC/)
-in a webview.
+- [Use Cases](#use-cases)
+- [Requirements](#requirements)
+- [Add the SDK to Your Project](#add-the-sdk-to-your-project)
+- [Credentials](#credentials)
+- [International Support](#international-support)
+- [Testing](#testing)
+- [Documentation](#documentation)
+- [Usability](#usability)
+- [Moving to PayPal Android SDK 2.0](#moving-to-paypal-android-sdk-20)
+- [Next Steps](#next-steps)
 
 
-Integration
------------
+## Use Cases
+
+The SDK supports two use cases: **Single Payment** and **Future Payments**.
 
 
-### Overview
+### Single Payment
 
-* The PayPal Android SDK...
-    1. Takes care of the UI to gather payment information from the user.
-    2. Coordinates payment with PayPal.
-    3. Returns to you a proof of payment.
-* Your code...
-    1. Receives proof of payment from the PayPal Android SDK.
-    2. [Sends proof of payment to your servers for verification](https://developer.paypal.com/webapps/developer/docs/integration/mobile/verify-mobile-payment/).
-    3. Provides the user their goods or services.
+Receive immediate payment from a customer's PayPal account or payment card (scanned with [card.io](https://www.card.io/)):
+
+1. [Accept a Single Payment](docs/single_payment.md) and receive back a proof of payment.
+2. On your server, [Verify the Payment](https://developer.paypal.com/webapps/developer/docs/integration/mobile/verify-mobile-payment/) (PayPal Developer site) using PayPal's API.
 
 
-### Requirements
+### Future Payments
+
+Your customer logs in to PayPal just one time and consents to future payments:
+
+1. [Obtain Customer Consent](docs/future_payments_mobile.md#obtain-customer-consent) to receive an authorization code.
+2. On your server, use this authorization code to [Obtain OAuth2 Tokens](docs/future_payments_server.md#obtain-oauth2-tokens).
+
+Later, when that customer initiates a payment:
+
+1. [Obtain an Application Correlation ID](docs/future_payments_mobile.md#obtain-an-application-correlation-id) that you'll pass to your server.
+2. On your server, [Create a Payment](docs/future_payments_server.md#create-a-payment) using your OAuth2 tokens, the Application Correlation ID, and PayPal's API.
+
+
+
+## Requirements
 
 * Android 2.2 or later
 * card.io card scanning available only on armv7 devices
 * Phone or tablet
 
 
-### Initial setup
+## Initial setup
 
 1. Download or clone this repo. The SDK includes a .jar, static libraries, release notes, and license acknowledgements. It also includes a sample app.
 2. Copy the contents of the SDK `libs` directory into your project's `libs` directory. The path to these files is important; if it is not exactly correct, the SDK will not work.
 3. Add the open source license acknowledgments from `acknowledgments.md` to your app's acknowledgments.
 
 
-### Credentials
+## Credentials
 
-Take note of these two identifiers:
+Your mobile integration requires different `client_id` values for each environment: Live and Test (Sandbox).
 
-  - `clientId`: Available on the [PayPal developer site](https://developer.paypal.com/).
-  - `receiverEmail`: The email address on the PayPal account used to obtain the above `clientId`.
+Your server integrations for verifying or creating payments will also require the corresponding `client_secret` for each `client_id`.
 
-### Android Manifest
+You can obtain these PayPal API credentials by visiting the [Applications page on the PayPal Developer site](https://developer.paypal.com/webapps/developer/applications) and logging in with your PayPal account.
 
-You will need to include the following in your project's `AndroidManifest.xml`.
+### Sandbox
 
-1. Ensure your minimum SDK level is 8 or above. You should have an element like this in `<manifest>`:
+Once logged in on this Applications page, you will be assigned **test credentials**, including Client ID, which will let you test your Android integration against the PayPal Sandbox.
 
-    ```xml
-    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="17" />
-    ```
+While testing your app, when logging in to PayPal in the SDK's UI you should use a *personal* Sandbox account email and password. I.e., not your Sandbox *business* credentials.
 
-2. Request the required permissions, also in `<manifest>`:
+You can create both business and personal Sandbox accounts on the [Sandbox accounts](https://developer.paypal.com/webapps/developer/applications/accounts) page.
 
-    ```xml
-    <!-- for card.io card scanning -->
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.VIBRATE" />
+### Live
 
-    <!-- for most things, including card.io and paypal -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
+To obtain your **live** credentials, you will need to have a business account. If you don't yet have a business account, there is a link at the bottom of that same Applications page that will get you started.
 
-    <!-- Camera features -->
-    <uses-feature android:name="android.hardware.camera" android:required="false" />
-    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
-    <uses-feature android:name="android.hardware.camera.flash" android:required="false" />
-    ```
-
-3. Add the SDK's service and activities to your `<application>`:
-
-    ```xml
-    <service android:name="com.paypal.android.sdk.payments.PayPalService" android:exported="false"/>
-
-    <activity android:name="com.paypal.android.sdk.payments.PaymentActivity" />
-    <activity android:name="com.paypal.android.sdk.payments.LoginActivity" />
-    <activity android:name="com.paypal.android.sdk.payments.PaymentMethodActivity" />
-    <activity android:name="com.paypal.android.sdk.payments.PaymentConfirmActivity" />
-
-    <activity
-        android:name="io.card.payment.CardIOActivity"
-        android:configChanges="keyboardHidden|orientation" />
-    <activity android:name="io.card.payment.DataEntryActivity" />
-    ```
-
-  4. If you're using ProGuard, add the following to your ProGuard config (e.g. `proguard-project.txt`):
-    ```
-    @proguard-paypal.cnf
-    ```
-
-
-## Sample Code
-
-The sample app provides a more complete example. However, at minimum, you must:
-
-1. Start the payment service when your activity is created and stop it upon destruction:
-
-    ```java
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        Intent intent = new Intent(this, PayPalService.class);
-
-        // live: don't put any environment extra
-        // sandbox: use PaymentActivity.ENVIRONMENT_SANDBOX
-        intent.putExtra(PaymentActivity.EXTRA_PAYPAL_ENVIRONMENT, PaymentActivity.ENVIRONMENT_NO_NETWORK);
-
-        intent.putExtra(PaymentActivity.EXTRA_CLIENT_ID, "<YOUR_CLIENT_ID>");
-
-        startService(intent);
-    }
-
-    @Override
-    public void onDestroy() {
-        stopService(new Intent(this, PayPalService.class));
-        super.onDestroy();
-    }
-    ```
-
-2. Create the payment and launch the payment intent, for example, when a button is pressed:
-
-    ```java
-    public void onBuyPressed(View pressed) {
-        PayPalPayment payment = new PayPalPayment(new BigDecimal("8.75"), "USD", "hipster jeans");
-
-        Intent intent = new Intent(this, PaymentActivity.class);
-
-        // comment this line out for live or set to PaymentActivity.ENVIRONMENT_SANDBOX for sandbox
-        intent.putExtra(PaymentActivity.EXTRA_PAYPAL_ENVIRONMENT, PaymentActivity.ENVIRONMENT_NO_NETWORK);
-
-        // it's important to repeat the clientId here so that the SDK has it if Android restarts your
-        // app midway through the payment UI flow.
-        intent.putExtra(PaymentActivity.EXTRA_CLIENT_ID, "credential-from-developer.paypal.com");
-
-        // Provide a payerId that uniquely identifies a user within the scope of your system,
-        // such as an email address or user ID.
-        intent.putExtra(PaymentActivity.EXTRA_PAYER_ID, "<someuser@somedomain.com>");
-
-        intent.putExtra(PaymentActivity.EXTRA_RECEIVER_EMAIL, "<YOUR_PAYPAL_EMAIL_ADDRESS>");
-        intent.putExtra(PaymentActivity.EXTRA_PAYMENT, payment);
-
-        startActivityForResult(intent, 0);
-    }
-    ```
-
-3. Implement `onActivityResult()`:
-
-    ```java
-    @Override
-    protected void onActivityResult (int requestCode, int resultCode, Intent data) {
-        if (resultCode == Activity.RESULT_OK) {
-            PaymentConfirmation confirm = data.getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
-            if (confirm != null) {
-                try {
-                    Log.i("paymentExample", confirm.toJSONObject().toString(4));
-
-                    // TODO: send 'confirm' to your server for verification.
-                    // see https://developer.paypal.com/webapps/developer/docs/integration/mobile/verify-mobile-payment/
-                    // for more details.
-
-                } catch (JSONException e) {
-                    Log.e("paymentExample", "an extremely unlikely failure occurred: ", e);
-                }
-            }
-        }
-        else if (resultCode == Activity.RESULT_CANCELED) {
-            Log.i("paymentExample", "The user canceled.");
-        }
-        else if (resultCode == PaymentActivity.RESULT_PAYMENT_INVALID) {
-            Log.i("paymentExample", "An invalid payment was submitted. Please see the docs.");
-        }
-    }
-    ```
-
-4. [Send the proof of payment to your servers for verification](https://developer.paypal.com/webapps/developer/docs/integration/mobile/verify-mobile-payment/),
-     as well as any other data required for your business, such as fulfillment information.
-
-### Disabling card.io card scanning
-
-To accept credit cards through manual entry, but disable card scanning, remove `android.permission.CAMERA` and `android.permission.VIBRATE` permissions from `AndroidManifest.xml`.  In addition, it is safe to remove the camera scanner libraries by removing the following folders within the `lib` directory: `armeabi`, `armeabi-v7a`, `mips`, and `x86`. 
-
-If you wish to disable credit card support altogether, follow the above steps to reduce the permissions and sdk footprint, and add the following [extra](http://paypal.github.io/PayPal-Android-SDK/com/paypal/android/sdk/payments/PaymentActivity.html#EXTRA_SKIP_CREDIT_CARD) to the `PaymentActivity` initialization.
-
-```java
-intent.putExtra(PaymentActivity.EXTRA_SKIP_CREDIT_CARD, true);
-```
-
-## Testing
-
-During development, set the intent extra `EXTRA_PAYPAL_ENVIRONMENT` to `ENVIRONMENT_NO_NETWORK` or `ENVIRONMENT_SANDBOX` to avoid moving real money.
 
 ## International Support
 
 ### Localizations
 
-The SDK has built-in translations for many languages and locales. See [javadocs](http://paypal.github.io/PayPal-Android-SDK/) files for a complete list.
+The SDK has built-in translations for many languages and locales. See [javadocs](../javadoc/index.html) files for a complete list.
 
 ### Currencies
 
-The SDK supports multiple currencies. See the [REST API country and currency documentation](https://developer.paypal.com/webapps/developer/docs/integration/direct/rest_api_payment_country_currency_support/) for a complete, up-to-date list.
+The SDK supports multiple currencies. See [the REST API country and currency documentation](https://developer.paypal.com/webapps/developer/docs/integration/direct/rest_api_payment_country_currency_support/) for a complete, up-to-date list.
 
-Note that currency support differs for credit card versus PayPal payments. Unless you disable credit card acceptance (via the `PaymentActivity.EXTRA_SKIP_CREDIT_CARD` intent extra), we recommend limiting transactions to currencies supported by both payment types. Currently these are: USD, GBP, CAD, EUR, JPY.
+Note that currency support differs for credit card versus PayPal payments. Unless you disable credit card acceptance (via the `PaymentActivity.EXTRA_SKIP_CREDIT_CARD` intent extra), **we recommend limiting transactions to currencies supported by both payment types.** Currently these are: USD, GBP, CAD, EUR, JPY.
 
 If your app initiates a transaction with a currency that turns out to be unsupported for the user's selected payment type, then the SDK will display an error to the user and write a message to the console log.
 
-## Hints & Tips
 
-* **Avoid fraud!** Be sure to [verify the proof of payment](https://developer.paypal.com/webapps/developer/docs/integration/mobile/verify-mobile-payment/).
-* Mobile networks are unreliable. Save the proof of payment to make sure it eventually reaches your server.
-* Refer to the [SDK reference](http://paypal.github.io/PayPal-Android-SDK/) as needed for extra details about any given property or parameter.
-* Some tools (including IntelliJ) will require that you add `libs/PayPalSDK.jar` to their dependencies path.
+## Testing
+
+During development, use `environment()` in the `PayPalConfiguration` object to change the environment.  Set it to either `ENVIRONMENT_NO_NETWORK` or `ENVIRONMENT_SANDBOX` to avoid moving real money.
+
+
+## Documentation
+
+* These docs in the SDK, which include an overview of usage, step-by-step integration instructions, and sample code.
+* The sample app included in this SDK.
+* There are [javadocs](../javadoc/index.html) available.
+* The [PayPal Developer Docs](https://developer.paypal.com/docs), which cover error codes and server-side integration instructions.
+
+
+## Usability
+
+User interface appearance and behavior is set within the library itself. For the sake of usability and user experience consistency, apps should not attempt to modify the SDK's behavior beyond the documented methods.
+
+
+## Moving to PayPal Android SDK 2.0
+
+
+### Upgrade from 1.x
+
+As a major version change, the API introduced in 2.0 is not backward compatible with 1.x integrations. However, the SDK still supports all previous single payment functionality. Upgrading is straightforward.
+
+* Most of the non-payment-specific extras of `PayPalPaymentActivity` have been moved to the `PayPalConfiguration` class, and the service startup has changed to take such a configuration object.
+
+
+
+### Older Libraries
+
+PayPal is in the process of replacing the older "Mobile Payments Libraries" (MPL) with the new PayPal Android and iOS SDKs.
+The new Mobile SDKs are based on the PayPal REST API, while the older MPL uses the Adaptive Payments API.
+
+Until features such as third-party, parallel, and chained payments are available, if needed, you can use MPL:
+
+ - [MPL on GitHub](https://github.com/paypal/sdk-packages/tree/gh-pages/MPL)
+ - [MPL Documentation](https://developer.paypal.com/webapps/developer/docs/classic/mobile/gs_MPL/)
+
+Issues related to MPL should be filed in the [sdk-packages repo](https://github.com/paypal/sdk-packages/).
+
+Developers with existing Express Checkout integrations or who want additional features may wish to use [Mobile Express Checkout](https://developer.paypal.com/webapps/developer/docs/classic/mobile/gs_MEC/)
+in a webview.
+
+
+## Next Steps
+
+Depending on your use case, you can now:
+
+* [Accept a single payment](docs/single_payment.md)
+* [Obtain user consent](docs/future_payments_mobile.md) to [create future payments](docs/future_payments_server.md).
