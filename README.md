@@ -83,7 +83,7 @@ To obtain your **live** credentials, you will need to have a business account. I
 
 ### Localizations
 
-The SDK has built-in translations for many languages and locales. See javadoc files for a complete list.
+The SDK has built-in translations for many languages and locales. See [javadoc](http://htmlpreview.github.io/?https://github.com/paypal/PayPal-Android-SDK/blob/gh-pages/index.html) files for a complete list.
 
 ### Currencies
 
