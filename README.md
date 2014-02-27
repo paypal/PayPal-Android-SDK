@@ -83,7 +83,7 @@ To obtain your **live** credentials, you will need to have a business account. I
 
 ### Localizations
 
-The SDK has built-in translations for many languages and locales. See [javadocs](../javadoc/index.html) files for a complete list.
+The SDK has built-in translations for many languages and locales. See [javadocs](../master/javadoc/index.html) files for a complete list.
 
 ### Currencies
 
