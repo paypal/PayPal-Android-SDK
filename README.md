@@ -103,7 +103,7 @@ During development, use `environment()` in the `PayPalConfiguration` object to c
 
 * These docs in the SDK, which include an overview of usage, step-by-step integration instructions, and sample code.
 * The sample app included in this SDK.
-* There are [javadocs](../javadoc/index.html) available.
+* There are [javadocs](ttp://htmlpreview.github.io/?https://github.com/paypal/PayPal-Android-SDK/blob/gh-pages/index.html) available.
 * The [PayPal Developer Docs](https://developer.paypal.com/docs), which cover error codes and server-side integration instructions.
 
 

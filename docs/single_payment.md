@@ -23,6 +23,38 @@ Sample Code
 
 The sample app provides a more complete example. However, at minimum, you must:
 
+1. Add permissions to your `AndroidManifest.xml` file:
+    ```xml
+    <!-- for card.io card scanning -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
+
+    <!-- for most things, including card.io & paypal -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    ```
+    
+1. Declare SDK service and activities in your `AndroidManifest.xml` file:
+    ```xml
+    <service android:name="com.paypal.android.sdk.payments.PayPalService"
+            android:exported="false" />
+        
+    <activity android:name="com.paypal.android.sdk.payments.PaymentActivity" />
+    <activity android:name="com.paypal.android.sdk.payments.LoginActivity" />
+    <activity android:name="com.paypal.android.sdk.payments.PaymentMethodActivity" />
+    <activity android:name="com.paypal.android.sdk.payments.PaymentConfirmActivity" />
+    <activity android:name="com.paypal.android.sdk.payments.PayPalFuturePaymentActivity" />
+    <activity android:name="com.paypal.android.sdk.payments.FuturePaymentConsentActivity" />
+    <activity android:name="com.paypal.android.sdk.payments.FuturePaymentInfoActivity" />
+    <activity android:name="io.card.payment.CardIOActivity"
+              android:configChanges="keyboardHidden|orientation" />
+    <activity android:name="io.card.payment.DataEntryActivity" />
+    ```
+
 1. Create a `PayPalConfiguration` object
     ```java
     private static PayPalConfiguration config = new PayPalConfiguration()
@@ -60,13 +92,14 @@ The sample app provides a more complete example. However, at minimum, you must:
 
     ```java
     public void onBuyPressed(View pressed) {
-        PayPalPayment payment = new PayPalPayment(new BigDecimal("8.75"), "USD", "hipster jeans");
+        // PAYMENT_INTENT_SALE will cause the payment to complete immediately.
+        // Change PAYMENT_INTENT_SALE to PAYMENT_INTENT_AUTHORIZE to only authorize payment and 
+        // capture funds later.
+
+        PayPalPayment payment = new PayPalPayment(new BigDecimal("1.75"), "USD", "hipster jeans",
+                PayPalPayment.PAYMENT_INTENT_SALE);
 
         Intent intent = new Intent(this, PaymentActivity.class);
-
-        // Provide a payerId that uniquely identifies a user within the scope of your system,
-        // such as an email address or user ID.
-        intent.putExtra(PaymentActivity.EXTRA_PAYER_ID, "<someuser@somedomain.com>");
 
         intent.putExtra(PaymentActivity.EXTRA_PAYMENT, payment);
 
