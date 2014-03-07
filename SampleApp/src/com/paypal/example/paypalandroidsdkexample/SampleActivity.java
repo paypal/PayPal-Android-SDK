@@ -1,8 +1,12 @@
 package com.paypal.example.paypalandroidsdkexample;
 
-import java.math.BigDecimal;
-
-import org.json.JSONException;
+import com.paypal.android.sdk.payments.PayPalAuthorization;
+import com.paypal.android.sdk.payments.PayPalConfiguration;
+import com.paypal.android.sdk.payments.PayPalFuturePaymentActivity;
+import com.paypal.android.sdk.payments.PayPalPayment;
+import com.paypal.android.sdk.payments.PayPalService;
+import com.paypal.android.sdk.payments.PaymentActivity;
+import com.paypal.android.sdk.payments.PaymentConfirmation;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,13 +16,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.paypal.android.sdk.payments.PayPalAuthorization;
-import com.paypal.android.sdk.payments.PayPalConfiguration;
-import com.paypal.android.sdk.payments.PayPalFuturePaymentActivity;
-import com.paypal.android.sdk.payments.PayPalPayment;
-import com.paypal.android.sdk.payments.PayPalService;
-import com.paypal.android.sdk.payments.PaymentActivity;
-import com.paypal.android.sdk.payments.PaymentConfirmation;
+import org.json.JSONException;
+
+import java.math.BigDecimal;
 
 public class SampleActivity extends Activity {
 
@@ -58,7 +58,9 @@ public class SampleActivity extends Activity {
     }
 
     public void onBuyPressed(View pressed) {
-        // change PAYMENT_INTENT_SALE to PAYMENT_INTENT_AUTHORIZE to only authorize payment and capture funds later.
+        // PAYMENT_INTENT_SALE will cause the payment to complete immediately.
+        // Change PAYMENT_INTENT_SALE to PAYMENT_INTENT_AUTHORIZE to only authorize payment and 
+        // capture funds later.
         PayPalPayment thingToBuy = new PayPalPayment(new BigDecimal("1.75"), "USD", "hipster jeans",
             PayPalPayment.PAYMENT_INTENT_SALE);
 
