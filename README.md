@@ -83,7 +83,7 @@ To obtain your **live** credentials, you will need to have a business account. I
 
 ### Localizations
 
-The SDK has built-in translations for many languages and locales. See [javadoc](http://htmlpreview.github.io/?https://github.com/paypal/PayPal-Android-SDK/blob/gh-pages/index.html) files for a complete list.
+The SDK has built-in translations for many languages and locales. See [javadoc](http://paypal.github.io/PayPal-Android-SDK/) files for a complete list.
 
 ### Currencies
 
@@ -103,7 +103,7 @@ During development, use `environment()` in the `PayPalConfiguration` object to c
 
 * These docs in the SDK, which include an overview of usage, step-by-step integration instructions, and sample code.
 * The sample app included in this SDK.
-* There are [javadocs](http://htmlpreview.github.io/?https://github.com/paypal/PayPal-Android-SDK/blob/gh-pages/index.html) available.
+* There are [javadocs](http://paypal.github.io/PayPal-Android-SDK/) available.
 * The [PayPal Developer Docs](https://developer.paypal.com/docs), which cover error codes and server-side integration instructions.
 
 
