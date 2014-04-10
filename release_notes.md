@@ -1,5 +1,13 @@
 PayPal Android SDK release notes
 ================================
+2.0.3
+-----
+* Add return of `authorization_id` to SDK's payment response when payment intent is authorization.  The `authorization_id` will be used to capture funds via server calls.
+* Add `PayPalConfig.getLibraryVersion()`.
+* Add support for Arabic and Malay languages.
+* Add proper handling of right-to-left languages (Hebrew and Arabic).
+* Improve user experience when user must log in again (informational dialog is displayed).
+
 2.0.2
 -----
 * Minor bug fixes.

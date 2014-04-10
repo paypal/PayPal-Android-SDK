@@ -20,16 +20,22 @@ import org.json.JSONException;
 
 import java.math.BigDecimal;
 
+/**
+ * Basic sample using the SDK to make a payment or consent to future payments.
+ * 
+ * For sample mobile backend interactions, see
+ * https://github.com/paypal/rest-api-sdk-python/tree/master/samples/mobile_backend
+ */
 public class SampleActivity extends Activity {
-
-    /*
+    private static final String TAG = "paymentExample";
+    /**
      * - Set to PaymentActivity.ENVIRONMENT_PRODUCTION to move real money.
      * 
-     * - Set to PaymentActivity.ENVIRONMENT_SANDBOX to use your test credentials from
-     * https://developer.paypal.com
+     * - Set to PaymentActivity.ENVIRONMENT_SANDBOX to use your test credentials
+     * from https://developer.paypal.com
      * 
-     * - Set to PayPalConfiguration.ENVIRONMENT_NO_NETWORK to kick the tires without communicating
-     * to PayPal's servers.
+     * - Set to PayPalConfiguration.ENVIRONMENT_NO_NETWORK to kick the tires
+     * without communicating to PayPal's servers.
      */
     private static final String CONFIG_ENVIRONMENT = PayPalConfiguration.ENVIRONMENT_NO_NETWORK;
 
@@ -61,8 +67,9 @@ public class SampleActivity extends Activity {
         // PAYMENT_INTENT_SALE will cause the payment to complete immediately.
         // Change PAYMENT_INTENT_SALE to PAYMENT_INTENT_AUTHORIZE to only authorize payment and 
         // capture funds later.
-        PayPalPayment thingToBuy = new PayPalPayment(new BigDecimal("1.75"), "USD", "hipster jeans",
-            PayPalPayment.PAYMENT_INTENT_SALE);
+        PayPalPayment thingToBuy =
+                new PayPalPayment(new BigDecimal("1.75"), "USD", "hipster jeans",
+                        PayPalPayment.PAYMENT_INTENT_SALE);
 
         Intent intent = new Intent(SampleActivity.this, PaymentActivity.class);
 
@@ -73,7 +80,7 @@ public class SampleActivity extends Activity {
 
     public void onFuturePaymentPressed(View pressed) {
         Intent intent = new Intent(SampleActivity.this, PayPalFuturePaymentActivity.class);
-        
+
         startActivityForResult(intent, REQUEST_CODE_FUTURE_PAYMENT);
     }
 
@@ -81,33 +88,41 @@ public class SampleActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CODE_PAYMENT) {
             if (resultCode == Activity.RESULT_OK) {
-                PaymentConfirmation confirm = data
-                        .getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
+                PaymentConfirmation confirm =
+                        data.getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
                 if (confirm != null) {
                     try {
-                        Log.i("paymentExample", confirm.toJSONObject().toString(4));
-
-                        // TODO: send 'confirm' to your server for verification or consent
-                        // completion.
-                        // see
-                        // https://developer.paypal.com/webapps/developer/docs/integration/mobile/verify-mobile-payment/
-                        // for more details.
-                        Toast.makeText(getApplicationContext(), "PaymentConfirmation info received from PayPal",
-                                Toast.LENGTH_LONG).show();
+                        Log.i(TAG, confirm.toJSONObject().toString(4));
+                        Log.i(TAG, confirm.getPayment().toJSONObject().toString(4));
+                        /**
+                         *  TODO: send 'confirm' (and possibly confirm.getPayment() to your server for verification
+                         * or consent completion.
+                         * See https://developer.paypal.com/webapps/developer/docs/integration/mobile/verify-mobile-payment/
+                         * for more details.
+                         *
+                         * For sample mobile backend interactions, see
+                         * https://github.com/paypal/rest-api-sdk-python/tree/master/samples/mobile_backend
+                         */
+                        Toast.makeText(
+                                getApplicationContext(),
+                                "PaymentConfirmation info received from PayPal", Toast.LENGTH_LONG)
+                                .show();
 
                     } catch (JSONException e) {
-                        Log.e("paymentExample", "an extremely unlikely failure occurred: ", e);
+                        Log.e(TAG, "an extremely unlikely failure occurred: ", e);
                     }
                 }
             } else if (resultCode == Activity.RESULT_CANCELED) {
-                Log.i("paymentExample", "The user canceled.");
+                Log.i(TAG, "The user canceled.");
             } else if (resultCode == PaymentActivity.RESULT_EXTRAS_INVALID) {
-                Log.i("paymentExample", "An invalid Payment was submitted. Please see the docs.");
+                Log.i(
+                        TAG,
+                        "An invalid Payment or PayPalConfiguration was submitted. Please see the docs.");
             }
         } else if (requestCode == REQUEST_CODE_FUTURE_PAYMENT) {
             if (resultCode == Activity.RESULT_OK) {
-                PayPalAuthorization auth = data
-                        .getParcelableExtra(PayPalFuturePaymentActivity.EXTRA_RESULT_AUTHORIZATION);
+                PayPalAuthorization auth =
+                        data.getParcelableExtra(PayPalFuturePaymentActivity.EXTRA_RESULT_AUTHORIZATION);
                 if (auth != null) {
                     try {
                         Log.i("FuturePaymentExample", auth.toJSONObject().toString(4));
@@ -116,8 +131,10 @@ public class SampleActivity extends Activity {
                         Log.i("FuturePaymentExample", authorization_code);
 
                         sendAuthorizationToServer(auth);
-                        Toast.makeText(getApplicationContext(), "Future Payment code received from PayPal",
-                                Toast.LENGTH_LONG).show();
+                        Toast.makeText(
+                                getApplicationContext(),
+                                "Future Payment code received from PayPal", Toast.LENGTH_LONG)
+                                .show();
 
                     } catch (JSONException e) {
                         Log.e("FuturePaymentExample", "an extremely unlikely failure occurred: ", e);
@@ -126,33 +143,40 @@ public class SampleActivity extends Activity {
             } else if (resultCode == Activity.RESULT_CANCELED) {
                 Log.i("FuturePaymentExample", "The user canceled.");
             } else if (resultCode == PayPalFuturePaymentActivity.RESULT_EXTRAS_INVALID) {
-                Log.i("FuturePaymentExample",
+                Log.i(
+                        "FuturePaymentExample",
                         "Probably the attempt to previously start the PayPalService had an invalid PayPalConfiguration. Please see the docs.");
             }
         }
     }
-    
+
     private void sendAuthorizationToServer(PayPalAuthorization authorization) {
-        
-        // TODO:
-        // Send the authorization response to your server, where it can exchange the authorization code
-        // for OAuth access and refresh tokens.
-        //
-        // Your server must then store these tokens, so that your server code can execute payments
-        // for this user in the future.
-        
+
+        /**
+         * TODO: Send the authorization response to your server, where it can
+         * exchange the authorization code for OAuth access and refresh tokens.
+         * 
+         * Your server must then store these tokens, so that your server code
+         * can execute payments for this user in the future.
+         * 
+         * A more complete example that includes the required app-server to
+         * PayPal-server integration is available from
+         * https://github.com/paypal/rest-api-sdk-python/tree/master/samples/mobile_backend
+         */
+
     }
-    
+
     public void onFuturePaymentPurchasePressed(View pressed) {
         // Get the Application Correlation ID from the SDK
         String correlationId = PayPalConfiguration.getApplicationCorrelationId(this);
-        
+
         Log.i("FuturePaymentExample", "Application Correlation ID: " + correlationId);
-        
+
         // TODO: Send correlationId and transaction details to your server for processing with
         // PayPal...
-        Toast.makeText(getApplicationContext(), "App Correlation ID received from SDK",
-                Toast.LENGTH_LONG).show();
+        Toast.makeText(
+                getApplicationContext(), "App Correlation ID received from SDK", Toast.LENGTH_LONG)
+                .show();
     }
 
     @Override

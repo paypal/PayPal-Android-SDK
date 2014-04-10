@@ -117,17 +117,10 @@ The sample app provides a more complete example. However, at minimum, you must:
             if (confirm != null) {
                 try {
                     Log.i("paymentExample", confirm.toJSONObject().toString(4));
-                    Log.i("paymentExample", confirm.getPayment().toJSONObject().toString(4));
 
-                    /**
-                     *  TODO: send 'confirm' (and possibly confirm.getPayment() to your server for verification
-                     * or consent completion.
-                     * See https://developer.paypal.com/webapps/developer/docs/integration/mobile/verify-mobile-payment/
-                     * for more details.
-                     *
-                     * For sample mobile backend interactions, see
-                     * https://github.com/paypal/rest-api-sdk-python/tree/master/samples/mobile_backend
-                     */
+                    // TODO: send 'confirm' to your server for verification.
+                    // see https://developer.paypal.com/webapps/developer/docs/integration/mobile/verify-mobile-payment/
+                    // for more details.
 
                 } catch (JSONException e) {
                     Log.e("paymentExample", "an extremely unlikely failure occurred: ", e);
@@ -138,7 +131,7 @@ The sample app provides a more complete example. However, at minimum, you must:
             Log.i("paymentExample", "The user canceled.");
         }
         else if (resultCode == PaymentActivity.RESULT_EXTRAS_INVALID) {
-            Log.i("paymentExample", "An invalid payment was submitted. Please see the docs.");
+            Log.i("paymentExample", "An invalid Payment or PayPalConfiguration was submitted. Please see the docs.");
         }
     }
     ```
