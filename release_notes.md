@@ -1,5 +1,13 @@
 PayPal Android SDK release notes
 ================================
+2.1.0
+----
+* Add integration with PayPal Wallet App (available only on the Samsung app store)
+	* In live environment, if the newly released PayPal Wallet app with authenticator is present on a user's device, the PayPal Wallet app will log the user in to the SDK.
+* Fix issue where some email addresses would not be accepted.
+* Fix some Spanish translations.
+* Fix possible NPE in payment confirmation flow.
+
 2.0.3
 -----
 * Add return of `authorization_id` to SDK's payment response when payment intent is authorization.  The `authorization_id` will be used to capture funds via server calls.

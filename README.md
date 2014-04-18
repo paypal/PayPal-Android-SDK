@@ -6,6 +6,7 @@ The PayPal Android SDK makes it easy to add PayPal and credit card payments to m
 ## Contents
 
 - [Use Cases](#use-cases)
+- [Integration with the PayPal Wallet App](#integration-with-the-paypal-wallet-app)
 - [Requirements](#requirements)
 - [Add the SDK to Your Project](#add-the-sdk-to-your-project)
 - [Credentials](#credentials)
@@ -43,6 +44,14 @@ Later, when that customer initiates a payment:
 2. On your server, [Create a Payment](docs/future_payments_server.md#create-a-payment) using your OAuth2 tokens, the Application Correlation ID, and PayPal's API.
 
 
+## Integration with the PayPal Wallet App
+
+The SDK will now use the newest version of the PayPal Wallet App if present on the device (available only on the [Samsung app store](apps.samsung.com/mars/topApps/topAppsDetail.as?categoryId=G000019679&productId=000000794995)) to log in to a customer account.  No additional configuration is required to enable this feature.  This integration enables device-specific PayPal [FIDO](https://fidoalliance.org/) integrations, including login by fingerprint on the Galaxy S5.  In addition, a user who logged in to the PayPal Wallet App and checked "Keep me logged in" may not need to log-in again when paying with your app.  For more information on how this all works, please read the [blog post](https://www.paypal-engineering.com/2014/04/11/pioneering-fingerprint-authentication-for-payments/) from one of our architects.
+
+### Limitations
+
+* The supported app will only be available in the [Samsung app store](apps.samsung.com/mars/topApps/topAppsDetail.as?categoryId=G000019679&productId=000000794995).  The version of the PayPal Wallet App in the Google Play store does not support this integration yet.  
+* The integration will _not_ be enabled in any of the [testing](#testing) modes, as the Wallet app does not support this developer testing environonment.
 
 ## Requirements
 
@@ -51,7 +60,7 @@ Later, when that customer initiates a payment:
 * Phone or tablet
 
 
-## Initial setup
+## Add the SDK to Your Project
 
 1. Download or clone this repo. The SDK includes a .jar, static libraries, release notes, and license acknowledgements. It also includes a sample app.
 2. Copy the contents of the SDK `libs` directory into your project's `libs` directory. The path to these files is important; if it is not exactly correct, the SDK will not work.
