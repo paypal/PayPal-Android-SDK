@@ -1,7 +1,13 @@
 PayPal Android SDK release notes
 ================================
+2.2.0
+-----
+* Add support for multiple items per payment.
+* Update PayPal logo.
+* Update card.io library to 3.1.5.  
+
 2.1.0
-----
+-----
 * Add integration with PayPal Wallet App (available only on the Samsung app store)
 	* In live environment, if the newly released PayPal Wallet app with authenticator is present on a user's device, the PayPal Wallet app will log the user in to the SDK.
 * Fix issue where some email addresses would not be accepted.

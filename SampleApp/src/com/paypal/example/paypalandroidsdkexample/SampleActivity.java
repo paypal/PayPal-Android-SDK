@@ -3,7 +3,9 @@ package com.paypal.example.paypalandroidsdkexample;
 import com.paypal.android.sdk.payments.PayPalAuthorization;
 import com.paypal.android.sdk.payments.PayPalConfiguration;
 import com.paypal.android.sdk.payments.PayPalFuturePaymentActivity;
+import com.paypal.android.sdk.payments.PayPalItem;
 import com.paypal.android.sdk.payments.PayPalPayment;
+import com.paypal.android.sdk.payments.PayPalPaymentDetails;
 import com.paypal.android.sdk.payments.PayPalService;
 import com.paypal.android.sdk.payments.PaymentActivity;
 import com.paypal.android.sdk.payments.PaymentConfirmation;
@@ -64,18 +66,46 @@ public class SampleActivity extends Activity {
     }
 
     public void onBuyPressed(View pressed) {
-        // PAYMENT_INTENT_SALE will cause the payment to complete immediately.
-        // Change PAYMENT_INTENT_SALE to PAYMENT_INTENT_AUTHORIZE to only authorize payment and 
-        // capture funds later.
-        PayPalPayment thingToBuy =
-                new PayPalPayment(new BigDecimal("1.75"), "USD", "hipster jeans",
-                        PayPalPayment.PAYMENT_INTENT_SALE);
+        /* 
+         * PAYMENT_INTENT_SALE will cause the payment to complete immediately.
+         * Change PAYMENT_INTENT_SALE to PAYMENT_INTENT_AUTHORIZE to only authorize payment and 
+         * capture funds later.
+         * 
+         * Also, to include additional payment details and an item list, see getStuffToBuy() below.
+         */
+        PayPalPayment thingToBuy = getThingToBuy(PayPalPayment.PAYMENT_INTENT_SALE);
 
         Intent intent = new Intent(SampleActivity.this, PaymentActivity.class);
 
         intent.putExtra(PaymentActivity.EXTRA_PAYMENT, thingToBuy);
 
         startActivityForResult(intent, REQUEST_CODE_PAYMENT);
+    }
+    
+    private PayPalPayment getThingToBuy(String environment) {
+        return new PayPalPayment(new BigDecimal("1.75"), "USD", "hipster jeans",
+                environment);
+    }
+    
+    /* 
+     * This method shows use of optional payment details and item list.
+     */
+    private PayPalPayment getStuffToBuy(String environment) {
+        PayPalItem[] items =
+            {
+                    new PayPalItem("old jeans with holes", 2, new BigDecimal("87.50"), "USD",
+                            "sku-12345678"),
+                    new PayPalItem("free rainbow patch", 1, new BigDecimal("0.00"),
+                            "USD", "sku-zero-price"),
+                    new PayPalItem("long sleeve plaid shirt (no mustache included)", 6, new BigDecimal("37.99"),
+                            "USD", "sku-33333") 
+            };
+    BigDecimal subtotal = PayPalItem.getItemTotal(items);
+    BigDecimal shipping = new BigDecimal("7.21");
+    BigDecimal tax = new BigDecimal("4.67");
+    PayPalPaymentDetails paymentDetails = new PayPalPaymentDetails(shipping, subtotal, tax);
+    BigDecimal amount = subtotal.add(shipping).add(tax);
+        return new PayPalPayment(amount, "USD", "hipster jeans", environment);
     }
 
     public void onFuturePaymentPressed(View pressed) {
