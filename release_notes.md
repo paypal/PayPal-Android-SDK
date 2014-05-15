@@ -1,5 +1,11 @@
 PayPal Android SDK release notes
 ================================
+2.2.1
+-----
+* Fix SampleApp code related to multiple item support.
+* Add instructions for using SDK in Gradle projects.
+* Fix issues associated with how the PayPalService was being managed.
+
 2.2.0
 -----
 * Add support for multiple items per payment.

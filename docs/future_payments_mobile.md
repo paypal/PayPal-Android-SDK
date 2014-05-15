@@ -37,14 +37,7 @@ Obtain Customer Consent
 The sample app provides a more complete example. However, at minimum, you must:
 
 1. Add permissions to your `AndroidManifest.xml` file:
-    ```xml
-    <!-- for card.io card scanning -->
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.VIBRATE" />
-    
-    <uses-feature android:name="android.hardware.camera" android:required="false" />
-    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
-
+    ```xml   
     <!-- for most things, including card.io & paypal -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
@@ -56,16 +49,10 @@ The sample app provides a more complete example. However, at minimum, you must:
     <service android:name="com.paypal.android.sdk.payments.PayPalService"
             android:exported="false" />
         
-    <activity android:name="com.paypal.android.sdk.payments.PaymentActivity" />
     <activity android:name="com.paypal.android.sdk.payments.LoginActivity" />
-    <activity android:name="com.paypal.android.sdk.payments.PaymentMethodActivity" />
-    <activity android:name="com.paypal.android.sdk.payments.PaymentConfirmActivity" />
     <activity android:name="com.paypal.android.sdk.payments.PayPalFuturePaymentActivity" />
     <activity android:name="com.paypal.android.sdk.payments.FuturePaymentConsentActivity" />
     <activity android:name="com.paypal.android.sdk.payments.FuturePaymentInfoActivity" />
-    <activity android:name="io.card.payment.CardIOActivity"
-              android:configChanges="keyboardHidden|orientation" />
-    <activity android:name="io.card.payment.DataEntryActivity" />
     ```
 
 1. Create a `PayPalConfiguration` object.  This object allows you to configure various aspects of the SDK.

@@ -82,15 +82,15 @@ public class SampleActivity extends Activity {
         startActivityForResult(intent, REQUEST_CODE_PAYMENT);
     }
     
-    private PayPalPayment getThingToBuy(String environment) {
+    private PayPalPayment getThingToBuy(String paymentIntent) {
         return new PayPalPayment(new BigDecimal("1.75"), "USD", "hipster jeans",
-                environment);
+                paymentIntent);
     }
     
     /* 
      * This method shows use of optional payment details and item list.
      */
-    private PayPalPayment getStuffToBuy(String environment) {
+    private PayPalPayment getStuffToBuy(String paymentIntent) {
         PayPalItem[] items =
             {
                     new PayPalItem("old jeans with holes", 2, new BigDecimal("87.50"), "USD",
@@ -105,7 +105,8 @@ public class SampleActivity extends Activity {
     BigDecimal tax = new BigDecimal("4.67");
     PayPalPaymentDetails paymentDetails = new PayPalPaymentDetails(shipping, subtotal, tax);
     BigDecimal amount = subtotal.add(shipping).add(tax);
-        return new PayPalPayment(amount, "USD", "hipster jeans", environment);
+        PayPalPayment payment = new PayPalPayment(amount, "USD", "hipster jeans", paymentIntent);
+        return payment.items(items).paymentDetails(paymentDetails);
     }
 
     public void onFuturePaymentPressed(View pressed) {

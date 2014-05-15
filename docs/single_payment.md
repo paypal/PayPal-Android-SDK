@@ -47,9 +47,6 @@ The sample app provides a more complete example. However, at minimum, you must:
     <activity android:name="com.paypal.android.sdk.payments.LoginActivity" />
     <activity android:name="com.paypal.android.sdk.payments.PaymentMethodActivity" />
     <activity android:name="com.paypal.android.sdk.payments.PaymentConfirmActivity" />
-    <activity android:name="com.paypal.android.sdk.payments.PayPalFuturePaymentActivity" />
-    <activity android:name="com.paypal.android.sdk.payments.FuturePaymentConsentActivity" />
-    <activity android:name="com.paypal.android.sdk.payments.FuturePaymentInfoActivity" />
     <activity android:name="io.card.payment.CardIOActivity"
               android:configChanges="keyboardHidden|orientation" />
     <activity android:name="io.card.payment.DataEntryActivity" />
