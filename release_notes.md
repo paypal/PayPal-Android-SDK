@@ -1,5 +1,11 @@
 PayPal Android SDK release notes
 ================================
+
+2.2.2
+-----
+* Add translations for Thai.
+* Fix bnCode validation to accept underscores and hyphens.
+
 2.2.1
 -----
 * Fix SampleApp code related to multiple item support.
