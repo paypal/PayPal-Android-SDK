@@ -9,6 +9,7 @@ import com.paypal.android.sdk.payments.PayPalPaymentDetails;
 import com.paypal.android.sdk.payments.PayPalService;
 import com.paypal.android.sdk.payments.PaymentActivity;
 import com.paypal.android.sdk.payments.PaymentConfirmation;
+import com.paypal.android.sdk.payments.ShippingAddress;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -105,8 +106,25 @@ public class SampleActivity extends Activity {
     BigDecimal tax = new BigDecimal("4.67");
     PayPalPaymentDetails paymentDetails = new PayPalPaymentDetails(shipping, subtotal, tax);
     BigDecimal amount = subtotal.add(shipping).add(tax);
-        PayPalPayment payment = new PayPalPayment(amount, "USD", "hipster jeans", paymentIntent);
-        return payment.items(items).paymentDetails(paymentDetails);
+    PayPalPayment payment = new PayPalPayment(amount, "USD", "hipster jeans", paymentIntent);
+    return payment.items(items).paymentDetails(paymentDetails);
+    }
+    
+    /*
+     * Add app-provided shipping address to payment
+     */
+    private void addAppProvidedShippingAddress(PayPalPayment paypalPayment) {
+        ShippingAddress shippingAddress =
+                new ShippingAddress().recipientName("Mom Parker").line1("52 North Main St.")
+                        .city("Austin").state("TX").postalCode("78729").countryCode("US");
+        paypalPayment.providedShippingAddress(shippingAddress);
+    }
+    
+    /*
+     * Enable retrieval of shipping addresses from buyer's PayPal account
+     */
+    private void enableShippingAddressRetrieval(PayPalPayment paypalPayment, boolean enable) {
+        paypalPayment.enablePayPalShippingAddressesRetrieval(enable);
     }
 
     public void onFuturePaymentPressed(View pressed) {

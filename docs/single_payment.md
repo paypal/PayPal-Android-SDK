@@ -17,6 +17,16 @@ Overview
     2. [Sends proof of payment to your servers for verification](https://developer.paypal.com/webapps/developer/docs/integration/mobile/verify-mobile-payment/).
     3. Provides the user their goods or services.
 
+_Optionally, your app can also instruct the PayPal Android SDK to ask the user to pick a **Shipping Address**:_
+
+* Your code...
+    1. Instructs the PayPal Android SDK to display an app-provided Shipping Address and/or the Shipping Addresses already associated with the user's PayPal account.
+* The PayPal Android SDK...
+    1. Allows the user to examine and choose from the displayed Shipping Address(es).
+    2. Adds the chosen Shipping Address to the payment information sent to PayPal's servers.
+* Your server...
+    1. When [verifying](https://developer.paypal.com/webapps/developer/docs/integration/mobile/verify-mobile-payment/) or [capturing](https://developer.paypal.com/webapps/developer/docs/integration/direct/capture-payment/#capture-the-payment) the payment, retrieves the Shipping Address from the payment information.
+
 
 Sample Code
 -----------
@@ -38,7 +48,7 @@ The sample app provides a more complete example. However, at minimum, you must:
     <uses-permission android:name="android.permission.INTERNET"/>
     ```
     
-1. Declare SDK service and activities in your `AndroidManifest.xml` file:
+1. Declare SDK service and activities in your `AndroidManifest.xml` file within the `<application>` tag:
     ```xml
     <service android:name="com.paypal.android.sdk.payments.PayPalService"
             android:exported="false" />
@@ -103,6 +113,7 @@ The sample app provides a more complete example. However, at minimum, you must:
         startActivityForResult(intent, 0);
     }
     ```
+    _Note: To provide a shipping address for the payment, see **addAppProvidedShippingAddress(...)** in the sample app.  To enable retrieval of shipping address from the user's PayPal account, see **enableShippingAddressRetrieval(...)** in the sample app._
 
 4. Implement `onActivityResult()`:
 

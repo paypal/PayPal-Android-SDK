@@ -44,7 +44,7 @@ The sample app provides a more complete example. However, at minimum, you must:
     <uses-permission android:name="android.permission.INTERNET"/>
     ```
     
-1. Declare SDK service and activities in your `AndroidManifest.xml` file:
+1. Declare SDK service and activities in your `AndroidManifest.xml` file within the `<application>` tag:
     ```xml
     <service android:name="com.paypal.android.sdk.payments.PayPalService"
             android:exported="false" />

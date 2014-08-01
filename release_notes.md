@@ -1,6 +1,12 @@
 PayPal Android SDK release notes
 ================================
 
+2.3.0
+----
+* Add user funding option selection.
+* Add app-controlled user shipping address selection (including support for the app to add a new shipping address).
+* Rename zh-Hant_HK -> zh-Hant so that HK is chosen by default for other regions
+
 2.2.2
 -----
 * Add translations for Thai.
