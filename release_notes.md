@@ -1,6 +1,11 @@
 PayPal Android SDK release notes
 ================================
 
+2.3.1
+----
+* Support display of Pay After Delivery funding options.
+* Minor bug fixes.
+
 2.3.0
 ----
 * Add user funding option selection.

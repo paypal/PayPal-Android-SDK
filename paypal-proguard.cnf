@@ -52,6 +52,7 @@
     static android.os.Parcelable$Creator CREATOR;
 }
 
+
 # ---- REQUIRED card.io CONFIG ----------------------------------------
 # card.io is a native lib, so anything crossing JNI must not be changed
 
@@ -86,10 +87,8 @@
     public protected *;
 }
 
+
 # -------- PayPal SDK ----------
 # (does not include card.io)
 
--keep public class com.paypal.android.sdk.payments.* {
-	public *;
-}
-
+-dontwarn com.google.android.gms.**
