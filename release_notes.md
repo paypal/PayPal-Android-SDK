@@ -1,6 +1,11 @@
 PayPal Android SDK release notes
 ================================
 
+
+2.3.2
+----
+* Re-add Version class for Cordova backward compatibility
+
 2.3.1
 ----
 * Support display of Pay After Delivery funding options.
