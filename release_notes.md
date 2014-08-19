@@ -1,6 +1,10 @@
 PayPal Android SDK release notes
 ================================
 
+2.3.5
+----
+* Hotfix for issue on live/sandbox environment introduced in 2.3.4.
+
 2.3.4
 ----
 * Fixed issue [#83: App freezes when calling startService](https://github.com/paypal/PayPal-Android-SDK/issues/83) for realsies this time.
