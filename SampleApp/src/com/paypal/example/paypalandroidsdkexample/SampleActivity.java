@@ -4,8 +4,10 @@ import com.paypal.android.sdk.payments.PayPalAuthorization;
 import com.paypal.android.sdk.payments.PayPalConfiguration;
 import com.paypal.android.sdk.payments.PayPalFuturePaymentActivity;
 import com.paypal.android.sdk.payments.PayPalItem;
+import com.paypal.android.sdk.payments.PayPalOAuthScopes;
 import com.paypal.android.sdk.payments.PayPalPayment;
 import com.paypal.android.sdk.payments.PayPalPaymentDetails;
+import com.paypal.android.sdk.payments.PayPalProfileSharingActivity;
 import com.paypal.android.sdk.payments.PayPalService;
 import com.paypal.android.sdk.payments.PaymentActivity;
 import com.paypal.android.sdk.payments.PaymentConfirmation;
@@ -22,6 +24,10 @@ import android.widget.Toast;
 import org.json.JSONException;
 
 import java.math.BigDecimal;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Basic sample using the SDK to make a payment or consent to future payments.
@@ -47,6 +53,7 @@ public class SampleActivity extends Activity {
 
     private static final int REQUEST_CODE_PAYMENT = 1;
     private static final int REQUEST_CODE_FUTURE_PAYMENT = 2;
+    private static final int REQUEST_CODE_PROFILE_SHARING = 3;
 
     private static PayPalConfiguration config = new PayPalConfiguration()
             .environment(CONFIG_ENVIRONMENT)
@@ -133,6 +140,22 @@ public class SampleActivity extends Activity {
         startActivityForResult(intent, REQUEST_CODE_FUTURE_PAYMENT);
     }
 
+    public void onProfileSharingPressed(View pressed) {
+        Intent intent = new Intent(SampleActivity.this, PayPalProfileSharingActivity.class);
+        intent.putExtra(PayPalProfileSharingActivity.EXTRA_REQUESTED_SCOPES, getOauthScopes());
+        startActivityForResult(intent, REQUEST_CODE_PROFILE_SHARING);
+    }
+
+    private PayPalOAuthScopes getOauthScopes() {
+        /* create the set of required scopes
+         * Note: see https://developer.paypal.com/docs/integration/direct/identity/attributes/ for mapping between the
+         * attributes you select for this app in the PayPal developer portal and the scopes required here.
+         */
+        Set<String> scopes = new HashSet<String>(
+                Arrays.asList(PayPalOAuthScopes.PAYPAL_SCOPE_EMAIL, PayPalOAuthScopes.PAYPAL_SCOPE_ADDRESS) );
+        return new PayPalOAuthScopes(scopes);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CODE_PAYMENT) {
@@ -194,6 +217,34 @@ public class SampleActivity extends Activity {
             } else if (resultCode == PayPalFuturePaymentActivity.RESULT_EXTRAS_INVALID) {
                 Log.i(
                         "FuturePaymentExample",
+                        "Probably the attempt to previously start the PayPalService had an invalid PayPalConfiguration. Please see the docs.");
+            } 
+        } else if (requestCode == REQUEST_CODE_PROFILE_SHARING) {
+            if (resultCode == Activity.RESULT_OK) {
+                PayPalAuthorization auth =
+                        data.getParcelableExtra(PayPalProfileSharingActivity.EXTRA_RESULT_AUTHORIZATION);
+                if (auth != null) {
+                    try {
+                        Log.i("ProfileSharingExample", auth.toJSONObject().toString(4));
+
+                        String authorization_code = auth.getAuthorizationCode();
+                        Log.i("ProfileSharingExample", authorization_code);
+
+                        sendAuthorizationToServer(auth);
+                        Toast.makeText(
+                                getApplicationContext(),
+                                "Profile Sharing code received from PayPal", Toast.LENGTH_LONG)
+                                .show();
+
+                    } catch (JSONException e) {
+                        Log.e("ProfileSharingExample", "an extremely unlikely failure occurred: ", e);
+                    }
+                }
+            } else if (resultCode == Activity.RESULT_CANCELED) {
+                Log.i("ProfileSharingExample", "The user canceled.");
+            } else if (resultCode == PayPalFuturePaymentActivity.RESULT_EXTRAS_INVALID) {
+                Log.i(
+                        "ProfileSharingExample",
                         "Probably the attempt to previously start the PayPalService had an invalid PayPalConfiguration. Please see the docs.");
             }
         }
