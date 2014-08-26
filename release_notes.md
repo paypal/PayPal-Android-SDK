@@ -1,8 +1,14 @@
 PayPal Android SDK release notes
 ================================
 
+2.5.0
+-----
+* Add support for payment intent value `order` to create a payment for later authorization and capture via server calls.
+* For single payments, an individual `PayPalItem` may be negative (for discounts, coupons, etc.).
+* Add `invoiceNumber`, `custom`, and `softDescriptor` as optional properties on `PayPalPayment`.
+
 2.4.0
-----
+-----
 * Add [Profile Sharing](https://github.com/paypal/PayPal-Android-SDK/blob/master/docs/profile_sharing_mobile.md) feature 
 	* Developer selects requested account profile attributes
 	* User may consent to sharing the requested profile data

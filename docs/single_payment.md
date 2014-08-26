@@ -99,9 +99,12 @@ The sample app provides a more complete example. However, at minimum, you must:
 
     ```java
     public void onBuyPressed(View pressed) {
+
         // PAYMENT_INTENT_SALE will cause the payment to complete immediately.
-        // Change PAYMENT_INTENT_SALE to PAYMENT_INTENT_AUTHORIZE to only authorize payment and 
-        // capture funds later.
+        // Change PAYMENT_INTENT_SALE to 
+        //   - PAYMENT_INTENT_AUTHORIZE to only authorize payment and capture funds later.
+        //   - PAYMENT_INTENT_ORDER to create a payment for authorization and capture
+        //     later via calls from your server.
 
         PayPalPayment payment = new PayPalPayment(new BigDecimal("1.75"), "USD", "hipster jeans",
                 PayPalPayment.PAYMENT_INTENT_SALE);

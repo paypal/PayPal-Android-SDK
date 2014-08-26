@@ -76,12 +76,18 @@ public class SampleActivity extends Activity {
     public void onBuyPressed(View pressed) {
         /* 
          * PAYMENT_INTENT_SALE will cause the payment to complete immediately.
-         * Change PAYMENT_INTENT_SALE to PAYMENT_INTENT_AUTHORIZE to only authorize payment and 
-         * capture funds later.
+         * Change PAYMENT_INTENT_SALE to 
+         *   - PAYMENT_INTENT_AUTHORIZE to only authorize payment and capture funds later.
+         *   - PAYMENT_INTENT_ORDER to create a payment for authorization and capture
+         *     later via calls from your server.
          * 
          * Also, to include additional payment details and an item list, see getStuffToBuy() below.
          */
         PayPalPayment thingToBuy = getThingToBuy(PayPalPayment.PAYMENT_INTENT_SALE);
+
+        /*
+         * See getStuffToBuy(..) for examples of some available payment options.
+         */
 
         Intent intent = new Intent(SampleActivity.this, PaymentActivity.class);
 
@@ -99,6 +105,7 @@ public class SampleActivity extends Activity {
      * This method shows use of optional payment details and item list.
      */
     private PayPalPayment getStuffToBuy(String paymentIntent) {
+        //--- include an item list, payment amount details
         PayPalItem[] items =
             {
                     new PayPalItem("old jeans with holes", 2, new BigDecimal("87.50"), "USD",
@@ -108,13 +115,18 @@ public class SampleActivity extends Activity {
                     new PayPalItem("long sleeve plaid shirt (no mustache included)", 6, new BigDecimal("37.99"),
                             "USD", "sku-33333") 
             };
-    BigDecimal subtotal = PayPalItem.getItemTotal(items);
-    BigDecimal shipping = new BigDecimal("7.21");
-    BigDecimal tax = new BigDecimal("4.67");
-    PayPalPaymentDetails paymentDetails = new PayPalPaymentDetails(shipping, subtotal, tax);
-    BigDecimal amount = subtotal.add(shipping).add(tax);
-    PayPalPayment payment = new PayPalPayment(amount, "USD", "hipster jeans", paymentIntent);
-    return payment.items(items).paymentDetails(paymentDetails);
+        BigDecimal subtotal = PayPalItem.getItemTotal(items);
+        BigDecimal shipping = new BigDecimal("7.21");
+        BigDecimal tax = new BigDecimal("4.67");
+        PayPalPaymentDetails paymentDetails = new PayPalPaymentDetails(shipping, subtotal, tax);
+        BigDecimal amount = subtotal.add(shipping).add(tax);
+        PayPalPayment payment = new PayPalPayment(amount, "USD", "hipster jeans", paymentIntent);
+        payment.items(items).paymentDetails(paymentDetails);
+
+        //--- set other optional fields like invoice_number, custom field, and soft_descriptor
+        payment.custom("This is text that will be associated with the payment that the app can use.");
+
+        return payment;
     }
     
     /*

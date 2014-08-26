@@ -39,6 +39,14 @@
            android:layout_marginTop="20dp"
            android:onClick="onFuturePaymentPurchasePressed"
            android:text="Future Payment Purchase" />
+
+        <Button
+           android:id="@+id/profileSharingBtn"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="20dp"
+           android:onClick="onFProfileSharingPressed"
+           android:text="Profile Sharing Consent" />
    </LinearLayout>
 
 </RelativeLayout>
