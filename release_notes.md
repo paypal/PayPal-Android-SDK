@@ -1,6 +1,10 @@
 PayPal Android SDK release notes
 ================================
 
+2.5.1
+-----
+* Fix layout xml issue in SampleApp [#89](https://github.com/paypal/PayPal-Android-SDK/issues/89)
+
 2.5.0
 -----
 * Add support for payment intent value `order` to create a payment for later authorization and capture via server calls.
