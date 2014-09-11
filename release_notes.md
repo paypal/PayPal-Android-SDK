@@ -1,6 +1,11 @@
 PayPal Android SDK release notes
 ================================
 
+2.5.2
+-----
+* Update Sample App icons
+* Minor bug fixes.
+
 2.5.1
 -----
 * Fix layout xml issue in SampleApp [#89](https://github.com/paypal/PayPal-Android-SDK/issues/89)
