@@ -1,6 +1,12 @@
 PayPal Android SDK release notes
 ================================
 
+2.5.3
+-----
+* Update card.io library (adds Diners Club and China UnionPay support).
+* Fix Cursor not closing problem reported in Strict mode [#87](https://github.com/paypal/PayPal-Android-SDK/issues/87).
+* Minor bug fixes.
+
 2.5.2
 -----
 * Update Sample App icons
