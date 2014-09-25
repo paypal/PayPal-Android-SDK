@@ -1,6 +1,12 @@
 PayPal Android SDK release notes
 ================================
 
+2.5.4
+-----
+* Fix issue that kept some apps from authorizing properly.
+* The SDK now rejects fractional amounts for HUF, JPY, TWD currencies (previously fractional amounts were rounded).
+
+
 2.5.3
 -----
 * Update card.io library (adds Diners Club and China UnionPay support).
