@@ -1,174 +1,158 @@
 PayPal Android SDK
 ==================
 
-The PayPal Android SDK makes it easy to add PayPal and credit card payments to mobile apps.
+PayPal Android SDKを使用すると、モバイルアプリにPayPalおよびクレジットカード支払いの機能を簡単に追加できます。
 
-## Contents
+## 目次
 
-- [Use Cases](#use-cases)
-- [Integration with the PayPal Wallet App](#integration-with-the-paypal-wallet-app)
-- [Requirements](#requirements)
-- [Add the SDK to Your Project](#add-the-sdk-to-your-project)
-- [Credentials](#credentials)
-- [International Support](#international-support)
-- [Disabling card.io card scanning](#disabling-cardio-card-scanning)
-- [Testing](#testing)
-- [Documentation](#documentation)
-- [Usability](#usability)
-- [Moving to PayPal Android SDK 2.0](#moving-to-paypal-android-sdk-20)
-- [Next Steps](#next-steps)
-
-
-## Use Cases
-
-The SDK supports two use cases: **Single Payment** and **Future Payments**.
+- [ユースケース](#use-cases)
+- [PayPalウォレットアプリとの統合](#integration-with-the-paypal-wallet-app)
+- [要件](#requirements)
+- [プロジェクトにSDKを追加する](#add-the-sdk-to-your-project)
+- [認証情報](#credentials)
+- [海外サポート](#international-support)
+- [card.ioカードスキャンの無効化](#disabling-cardio-card-scanning)
+- [テスト](#testing)
+- [ドキュメント](#documentation)
+- [ユーザビリティ](#usability)
+- [PayPal Android SDK 2.0への移行](#moving-to-paypal-android-sdk-20)
+- [次のステップ](#next-steps)
 
 
-### Single Payment
+### 1件の支払い(Single Payment)
 
-Receive immediate payment from a customer's PayPal account or payment card (scanned with [card.io](https://www.card.io/)):
+お客さまのPayPalアカウントまたは([card.io](https://www.card.io/)でスキャンされた)決済カードから即時支払いを受け取ります。
 
-1. [Accept a Single Payment](docs/single_payment.md) and receive back a proof of payment.
-2. On your server, [Verify the Payment](https://developer.paypal.com/webapps/developer/docs/integration/mobile/verify-mobile-payment/) (PayPal Developer site) using PayPal's API.
-
-
-### Future Payments
-
-Your customer logs in to PayPal just one time and consents to future payments:
-
-1. [Obtain Customer Consent](docs/future_payments_mobile.md#obtain-customer-consent) to receive an authorization code.
-2. On your server, use this authorization code to [Obtain OAuth2 Tokens](docs/future_payments_server.md#obtain-oauth2-tokens).
-
-Later, when that customer initiates a payment:
-
-1. [Obtain an Application Correlation ID](docs/future_payments_mobile.md#obtain-an-application-correlation-id) that you'll pass to your server.
-2. On your server, [Create a Payment](docs/future_payments_server.md#create-a-payment) using your OAuth2 tokens, the Application Correlation ID, and PayPal's API.
-
-### Profile Sharing
-
-Your customer logs in to PayPal and consents to PayPal sharing information with you:
-
-1. [Obtain Customer Consent](docs/profile_sharing_mobile.md#obtain-customer-consent) to receive an authorization code.
-2. On your server, use this authorization code to [Obtain OAuth2 Tokens](docs/profile_sharing_server.md#obtain-oauth2-tokens).
-3. On your server, [Retrieve Customer Information](docs/profile_sharing_server.md#retrieve-customer-information) using your OAuth2 tokens and PayPal's API.
+1. [1件の支払いを受諾](docs/single_payment.md)して支払い証明を受け取ります。2. ご使用のサーバーで、PayPalのAPIを使用して[支払いを認証](https://developer.paypal.com/webapps/developer/docs/integration/mobile/verify-mobile-payment/) (PayPalデベロッパーサイト)します。
 
 
-## Integration with the PayPal Wallet App
+### 今後の支払い(Future Payments)
 
-The SDK will now use the newest version of the PayPal Wallet App if present on the device (available only on the [Samsung app store](apps.samsung.com/mars/topApps/topAppsDetail.as?categoryId=G000019679&productId=000000794995)) to log in to a customer account.  No additional configuration is required to enable this feature.  This integration enables device-specific PayPal [FIDO](https://fidoalliance.org/) integrations, including login by fingerprint on the Galaxy S5.  In addition, a user who logged in to the PayPal Wallet App and checked "Keep me logged in" may not need to log-in again when paying with your app.  For more information on how this all works, please read the [blog post](http://www.embedded.com/design/real-world-applications/4430305/Implementing-Android-based-fingerprint-authentication-for-online-payments) from one of our architects.
+お客さまは、一度だけPayPalにログインして今後の支払いに同意します。
+1. [お客さまの同意を得て](docs/future_payments_mobile.md#obtain-customer-consent)承認コードを受け取ります。2. ご使用のサーバーで、この承認コードを使用して[OAuth2トークンを取得](docs/future_payments_server.md#obtain-oauth2-tokens)します。
 
-### Limitations
+この後、お客さまが支払いを開始すると以下のプロセスに進みます。 
 
-* The supported app will only be available in the [Samsung app store](apps.samsung.com/mars/topApps/topAppsDetail.as?categoryId=G000019679&productId=000000794995).  The version of the PayPal Wallet App in the Google Play store does not support this integration yet.  
-* The integration will _not_ be enabled in any of the [testing](#testing) modes, as the Wallet app does not support this developer testing environonment.
+1. サーバーに渡す[アプリケーション相関IDを取得](docs/future_payments_mobile.md#obtain-an-application-correlation-id)します。
+2. お使いのサーバーで、OAuth2トークン、アプリケーション相関ID、およびPayPalのAPIを使用して[支払いを作成](docs/future_payments_server.md#create-a-payment)します。
 
-## Requirements
+###個人設定の共有
 
-* Android 2.2 or later
-* card.io card scanning available only on armv7 devices
-* Phone or tablet
+お客さまは、PayPalにログインして、PayPalが貴社と情報を共有することに同意します。
 
-
-## Add the SDK to Your Project
-
-1. Download or clone this repo. The SDK includes a .jar, static libraries, release notes, and license acknowledgements. It also includes a sample app.
-2. Copy the contents of the SDK `libs` directory into your project's `libs` directory. The path to these files is important; if it is not exactly correct, the SDK will not work.  (_NOTE:_ If you are using Gradle, copy SDK jar file into your project's `libs` directory, `add as library` to project, and finally copy the SDK folders containing the *.so files into `src/main/jniLibs`.)
-3. Add the open source license acknowledgments from `acknowledgments.md` to your app's acknowledgments.
+1. [お客さまの同意を得て](docs/profile_sharing_mobile.md#obtain-customer-consent)承認コードを取得します。2. ご使用のサーバーで、この承認コードを使用して[OAuth2トークンを取得](docs/profile_sharing_server.md#obtain-oauth2-tokens)します。3. ご使用のサーバーで、OAuth2トークンとPayPalのAPIを使用して、[顧客情報を検索](docs/profile_sharing_server.md#retrieve-customer-information)します。
 
 
-## Credentials
+## PayPalウォレットアプリとの統合
 
-Your mobile integration requires different `client_id` values for each environment: Live and Test (Sandbox).
+SDKは、デバイスにPayPalウォレットアプリの最新バージョン([Samsung App Store](apps.samsung.com/mars/topApps/topAppsDetail.as?categoryId=G000019679&productId=000000794995)でのみ入手可能)がインストールされている場合はそれを使用して、お客さまのアカウントにログインするようになります。この機能を有効にするため、追加構成を行う必要はありません。この統合により、Galaxy S5の指紋認証ログインを含む端末固有のPayPal [FIDO](https://fidoalliance.org/)との統合が有効になります。さらに、PayPalウォレットアプリにログインして[ログインしたままにする]にチェックを入れたユーザーは、アプリでの支払い時に再度ログインする必要がありません。この機能についての詳細は、PayPalアーキテクトの[ブログポスト](http://www.embedded.com/design/real-world-applications/4430305/Implementing-Android-based-fingerprint-authentication-for-online-payments)を参照してください。
 
-Your server integrations for verifying or creating payments will also require the corresponding `client_secret` for each `client_id`.
+### 制限
 
-You can obtain these PayPal API credentials by visiting the [Applications page on the PayPal Developer site](https://developer.paypal.com/webapps/developer/applications) and logging in with your PayPal account.
+* サポートされるアプリは、[Samsung App Store](apps.samsung.com/mars/topApps/topAppsDetail.as?categoryId=G000019679&productId=000000794995)でのみ入手できます。Google PlayストアのバージョンのPayPalウォレットアプリは、まだこの統合をサポートしていません。* ウォレットアプリはデベロッパーのテスト環境に対応して_いない_ため、統合は[テスト](#testing)モードでは無効です。
+
+## 要件
+
+* Android 2.2またはそれ以降
+* card.ioカードスキャニング(armv7デバイスでのみ使用可能)
+* 電話またはタブレット
+
+
+## プロジェクトにSDKを追加する
+
+1. このrepoをダウンロードまたはコピーします。SDKには、.jar、スタティックライブラリ、リリースノート、ライセンス許諾書が含まれています。サンプルアプリも含まれています。2. SDKの`libs`ディレクトリのコンテンツを自分のプロジェクトの`libs`ディレクトリにコピーします。これらのファイルへのパスは重要です。誤りがあるとSDKが機能しません。(_注:_ Gradleを使用している場合は、SDK jarファイルを自分のプロジェクトの`libs`ディレクトリにコピーして、プロジェクトに`ライブラリとして追加`し、最後に*.soファイルを含むSDKフォルダを`src/main/jniLibs`にコピーしてください)。
+3. `acknowledgments.md`から、オープンソースライセンス許諾書を自分のアプリの許諾書に追加します。
+
+
+## 認証情報
+
+モバイル統合では、本番用とテスト用(Sandbox)にそれぞれ異なる`client_id`値が必要です。
+
+支払いを認証または作成するためのサーバー統合では、各`client_id`に対応する`client_secret`も必要です。
+
+PayPal API認証情報は、[PayPalデベロッパーサイトのアプリケーションページ](https://developer.paypal.com/webapps/developer/applications)を開いて、自分のPayPalアカウントでログインすると入手できます。
 
 ### Sandbox
 
-Once logged in on this Applications page, you will be assigned **test credentials**, including Client ID, which will let you test your Android integration against the PayPal Sandbox.
+このアプリケーションページにログインすると、**テスト用認証情報**が割り当てられます。これには、PayPal SandboxへのAndroidの統合をテストするためのクライアントIDが含まれています。
 
-While testing your app, when logging in to PayPal in the SDK's UI you should use a *personal* Sandbox account email and password. I.e., not your Sandbox *business* credentials.
+アプリのテスト中にSDKのUIでPayPalにログインする場合は、*パーソナル*Sandboxアカウントのメールアドレスとパスワードを使用する必要があります。Sandbox用*ビジネス*アカウントの認証情報は使いません。
 
-You can create both business and personal Sandbox accounts on the [Sandbox accounts](https://developer.paypal.com/webapps/developer/applications/accounts) page.
+[Sandboxアカウント](https://developer.paypal.com/webapps/developer/applications/accounts)ページで、Sandbox用のビジネスアカウントとパーソナルアカウントを作成できます。
 
-### Live
+### 本番環境
 
-To obtain your **live** credentials, you will need to have a business account. If you don't yet have a business account, there is a link at the bottom of that same Applications page that will get you started.
-
-
-## International Support
-
-### Localizations
-
-The SDK has built-in translations for many languages and locales. See [javadoc](http://paypal.github.io/PayPal-Android-SDK/) files for a complete list.
-
-### Currencies
-
-The SDK supports multiple currencies. See [the REST API country and currency documentation](https://developer.paypal.com/webapps/developer/docs/integration/direct/rest_api_payment_country_currency_support/) for a complete, up-to-date list.
-
-Note that currency support differs for credit card versus PayPal payments. Unless you disable credit card acceptance (via the `PaymentActivity.EXTRA_SKIP_CREDIT_CARD` intent extra), **we recommend limiting transactions to currencies supported by both payment types.** Currently these are: USD, GBP, CAD, EUR, JPY.
-
-If your app initiates a transaction with a currency that turns out to be unsupported for the user's selected payment type, then the SDK will display an error to the user and write a message to the console log.
+**本番用**認証情報を入手するには、ビジネスアカウントが必要です。ビジネスアカウントをまだお持ちでない場合は、同じアプリケーションページの下部にリンクがあり、ここからアカウントを開設できます。
 
 
-## Disabling card.io card scanning
+## 海外サポート
 
-Future payments does not require card.io card scanning, so it is safe to remove the camera scanner libraries by removing the following folders within the `lib` directory: `armeabi`, `armeabi-v7a`, `mips`, and `x86`.
+### ローカライズ
 
-Single Payments can be configured to accept credit cards through manual entry, but without card scanning.  To do so, remove the same libs above, and remove `android.permission.CAMERA` and `android.permission.VIBRATE` permissions from `AndroidManifest.xml`.  If you wish to disable credit card support altogether, follow the above steps to reduce the permissions and sdk footprint, and add the following to the `PayPalConfiguration` initialization:
+SDKには、多数の言語およびロケールの翻訳が組み込まれています。完全なリストは、[javadoc](http://paypal.github.io/PayPal-Android-SDK/)ファイルで参照できます。
+
+### 通貨
+
+SDKでは複数の通貨に対応しています。完全な最新リストは、[REST APIの国と通貨に関するドキュメント](https://developer.paypal.com/webapps/developer/docs/integration/direct/rest_api_payment_country_currency_support/)で参照してください。
+
+クレジットカードとPayPal支払いでは対応通貨が異なりますのでご注意ください。`PaymentActivity.EXTRA_SKIP_CREDIT_CARD` intent extraを使用してクレジットカード決済の受付けを無効にしない限り、**取引を、両方の支払いタイプで対応している通貨に限定することをおすすめします。** 現在両方で対応している通貨は、USD、GBP、CAD、EUR、JPYです。
+
+ユーザーが選択した支払いタイプで対応していない通貨を使用してアプリが取引を開始した場合、SDKはユーザーにエラーを表示し、コンソールログにメッセージを出力します。
+
+
+## card.ioによるカードスキャンの無効化
+
+今後の支払いではcard.ioによるカードスキャンが不要なため、カメラスキャナライブラリを削除しておいたほうが安全です。`lib`ディレクトリの`armeabi`、`armeabi-v7a`、`mips`、および`x86`の各フォルダを削除します。
+
+1件の支払いは、カードスキャンをせず、手動入力でクレジットカードに対応するよう設定できます。これを行うには、上記と同じライブラリを削除し、`AndroidManifest.xml`から`android.permission.CAMERA`と`android.permission.VIBRATE`の許可を削除してください。クレジットカードのサポートを完全に無効にする場合は、上記の手順で許可とSDKのフットプリントを減らし、`PayPalConfiguration`の初期化に以下を追加してください。
 ```
 config.acceptCreditCards(false);
 ```
 
-## Testing
+## テスト
 
-During development, use `environment()` in the `PayPalConfiguration` object to change the environment.  Set it to either `ENVIRONMENT_NO_NETWORK` or `ENVIRONMENT_SANDBOX` to avoid moving real money.
-
-
-## Documentation
-
-* These docs in the SDK, which include an overview of usage, step-by-step integration instructions, and sample code.
-* The sample app included in this SDK.
-* There are [javadocs](http://paypal.github.io/PayPal-Android-SDK/) available.
-* The [PayPal Developer Docs](https://developer.paypal.com/docs), which cover error codes and server-side integration instructions.
+開発中は、`PayPalConfiguration`オブジェクトで`environment()`を使用して環境を変更してください。実際に資金が移動されないよう、`ENVIRONMENT_NO_NETWORK`または`ENVIRONMENT_SANDBOX`に設定します。
 
 
-## Usability
+## ドキュメント
 
-User interface appearance and behavior is set within the library itself. For the sake of usability and user experience consistency, apps should not attempt to modify the SDK's behavior beyond the documented methods.
-
-
-## Moving to PayPal Android SDK 2.0
+* 使用方法の概要、統合手順をステップごとに記載した説明書、サンプルコードを含むドキュメントがSDKに用意されています。* このSDKにはサンプルアプリが含まれています。* [javadocs](http://paypal.github.io/PayPal-Android-SDK/)が用意されています。* エラーコードとサーバー側の統合手順が記載された[PayPalデベロッパードキュメント](https://developer.paypal.com/docs)。
 
 
-### Upgrade from 1.x
+## ユーザビリティ
 
-As a major version change, the API introduced in 2.0 is not backward compatible with 1.x integrations. However, the SDK still supports all previous single payment functionality. Upgrading is straightforward.
+ユーザーインターフェイスの外観と動作は、ライブラリ内で設定されます。ユーザビリティとユーザーエクスペリエンスの一貫性を保つため、ドキュメントに記載された方法以外でアプリがSDKの動作を変更することはおすすめしません。
 
-* Most of the non-payment-specific extras of `PayPalPaymentActivity` have been moved to the `PayPalConfiguration` class, and the service startup has changed to take such a configuration object.
+
+## PayPal Android SDK 2.0への移行
+
+
+### 1.xからのアップグレード
+
+メジャーバージョンの変更として、2.0で導入されるAPIは、1.x統合との下位互換性がありません。ただし、SDKは、1件の支払いについて、これまでのすべての機能を引き続きサポートしています。アップグレードは簡単です。
+
+* `PayPalPaymentActivity`の支払い固有のextra以外のextraの多くは`PayPalConfiguration`クラスに移動しています。サービススタートアップはそのような構成オブジェクトを取得するよう変更されています。
 
 
 
-### Older Libraries
+### 旧ライブラリ
 
-PayPal is in the process of replacing the older "Mobile Payments Libraries" (MPL) with the new PayPal Android and iOS SDKs.
-The new Mobile SDKs are based on the PayPal REST API, while the older MPL uses the Adaptive Payments API.
+PayPalは、これまでの「Mobile Payments Libraries」(MPL)から新しいPayPal AndroidおよびiOS SDKに移行中です。
+新しいモバイルSDKはPayPal REST APIに基づいています。これまでのMPLはアダプティブペイメントAPIを使用しています。
 
-Until features such as third-party, parallel, and chained payments are available, if needed, you can use MPL:
+第三者、並行型、チェーン型の支払いなどの機能が使えるようになるまでは、必要に応じてMPLを使用できます。
 
- - [MPL on GitHub](https://github.com/paypal/sdk-packages/tree/gh-pages/MPL)
- - [MPL Documentation](https://developer.paypal.com/webapps/developer/docs/classic/mobile/gs_MPL/)
+ - [GitHubのMPL](https://github.com/paypal/sdk-packages/tree/gh-pages/MPL)
+ - [MPLに関するドキュメント](https://developer.paypal.com/webapps/developer/docs/classic/mobile/gs_MPL/)
 
-Issues related to MPL should be filed in the [sdk-packages repo](https://github.com/paypal/sdk-packages/).
+MPLに関する問題は、[sdk-packages repo](https://github.com/paypal/sdk-packages/)に提出してください。
 
-Developers with existing Express Checkout integrations or who want additional features may wish to use [Mobile Express Checkout](https://developer.paypal.com/webapps/developer/docs/classic/mobile/gs_MEC/)
-in a webview.
+既存のエクスプレス チェックアウトを統合しているデベロッパーまたは追加機能が必要なデベロッパーは、WebViewで[モバイルエクスプレス チェックアウト](https://developer.paypal.com/webapps/developer/docs/classic/mobile/gs_MEC/)の使用を検討することができます。
 
 
-## Next Steps
+## 次のステップ
 
-Depending on your use case, you can now:
+ユースケースに応じて、以下が可能です:
 
-* [Accept a single payment](docs/single_payment.md)
-* [Obtain user consent](docs/future_payments_mobile.md) to [create future payments](docs/future_payments_server.md).
+* [1件の支払いを受ける](docs/single_payment.md)
+* [今後の支払いを作成](docs/future_payments_server.md)ために[ユーザーの同意を得る](docs/future_payments_mobile.md)
