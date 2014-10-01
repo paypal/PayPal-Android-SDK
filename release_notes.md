@@ -1,6 +1,10 @@
 PayPal Android SDK release notes
 ================================
 
+2.5.5
+-----
+* Fix issue with some PayPal Credit funding instruments [#97](https://github.com/paypal/PayPal-Android-SDK/issues/97).
+
 2.5.4
 -----
 * Fix issue that kept some apps from authorizing properly.
