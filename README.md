@@ -21,7 +21,7 @@ The PayPal Android SDK makes it easy to add PayPal and credit card payments to m
 
 ## Use Cases
 
-The SDK supports two use cases: **Single Payment** and **Future Payments**.
+The SDK supports two use cases for making payments - **Single Payment** and **Future Payments** - and a third use case for obtaining information about the customer - **Profile Sharing**.
 
 
 ### Single Payment
