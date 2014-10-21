@@ -56,6 +56,7 @@ The sample app provides a more complete example. However, at minimum, you must:
     <service android:name="com.paypal.android.sdk.payments.PayPalService"
             android:exported="false" />
         
+    <activity android:name="com.paypal.android.sdk.payments.FuturePaymentInfoActivity" />
     <activity android:name="com.paypal.android.sdk.payments.LoginActivity" />
     <activity android:name="com.paypal.android.sdk.payments.PayPalProfileSharingActivity" />
     <activity android:name="com.paypal.android.sdk.payments.ProfileSharingConsentActivity" />

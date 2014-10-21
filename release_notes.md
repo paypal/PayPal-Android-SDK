@@ -1,6 +1,13 @@
 PayPal Android SDK release notes
 ================================
 
+2.6.0
+-----
+* Do not show consent screen if the requested scope has already been consented.
+* Update card.io library to 3.2.0.
+* Update all targets to android-21.
+* Minor bug fixes.
+
 2.5.6
 -----
 * Minor bug fixes.
