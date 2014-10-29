@@ -1,9 +1,14 @@
 PayPal Android SDK release notes
 ================================
 
+2.6.1
+-----
+* Minor improvements relevant only to select partners.
+* Minor bug fixes.
+
 2.6.0
 -----
-* Do not show consent screen if the requested scope has already been consented.
+* Streamline Profile Sharing for cases where a user has previously authorized sharing.
 * Update card.io library to 3.2.0.
 * Update all targets to android-21.
 * Minor bug fixes.
