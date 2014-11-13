@@ -1,0 +1,74 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.14.2'
+    }
+}
+
+ext {
+    libsSrcDir = new File("${projectDir}/libs")
+}
+
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 21
+    buildToolsVersion '21.1.1'
+
+    signingConfigs {
+        myConfig {
+            storeFile file("example.keystore")
+            storePassword "abc123"
+            keyAlias "example-alias"
+            keyPassword "abc123"
+        }
+    }
+
+    buildTypes {
+        debug {
+            applicationIdSuffix ".debug"
+        }
+
+        release{
+            minifyEnabled true
+            proguardFile file('paypal-proguard.cnf')
+            signingConfig signingConfigs.myConfig
+        }
+    }
+
+    android.applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def outputFile = output.outputFile
+            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                output.outputFile = new File(outputFile.parent, "paypal-sample-app-${variant.name}.apk")
+            }
+        }
+    }
+
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs = ['src']
+            resources.srcDirs = ['src']
+            res.srcDirs = ['res']
+            assets.srcDirs = ['assets']
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: libsSrcDir, include: '*.jar')
+    compile files("${buildDir}/native-libs/native-libs.jar")
+}
+
+task nativeLibsToJar(
+        type: Jar,
+        description: 'create a jar archive of the native libs') {
+    destinationDir file("${buildDir}/native-libs")
+    baseName 'native-libs'
+    from fileTree(dir: libsSrcDir, include: '**/*.so')
+    into 'lib/'
+}

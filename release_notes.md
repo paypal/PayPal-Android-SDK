@@ -1,6 +1,12 @@
 PayPal Android SDK release notes
 ================================
 
+2.7.0
+-----
+* Add support for Russian Rubles. 
+* Add gradle files to Sample App.
+* Minor fixes to the Consent Activity.
+
 2.6.1
 -----
 * Minor improvements relevant only to select partners.
