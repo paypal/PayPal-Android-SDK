@@ -1,6 +1,13 @@
 PayPal Android SDK release notes
 ================================
 
+2.7.1
+-----
+* Fix validation issue related to android:process [#114](https://github.com/paypal/PayPal-Android-SDK/issues/114).
+* Minor bug fixes.
+* Update sample app build tools version.
+* Remove some old files.
+
 2.7.0
 -----
 * Add support for Russian Rubles. 
