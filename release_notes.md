@@ -1,6 +1,12 @@
 PayPal Android SDK release notes
 ================================
 
+2.7.2
+-----
+* Add additional logging for exceptions on threads.
+* Update sample app gradle wrapper to 2.2.1.
+* Update sample app build tools version.
+
 2.7.1
 -----
 * Fix validation issue related to android:process [#114](https://github.com/paypal/PayPal-Android-SDK/issues/114).
