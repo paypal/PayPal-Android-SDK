@@ -1,6 +1,10 @@
 PayPal Android SDK release notes
 ================================
 
+2.7.3
+-----
+* Fix single payments issue affecting cross-app integrations.
+
 2.7.2
 -----
 * Add additional logging for exceptions on threads.
