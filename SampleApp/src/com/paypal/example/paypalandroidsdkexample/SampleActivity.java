@@ -279,15 +279,15 @@ public class SampleActivity extends Activity {
     }
 
     public void onFuturePaymentPurchasePressed(View pressed) {
-        // Get the Application Correlation ID from the SDK
-        String correlationId = PayPalConfiguration.getApplicationCorrelationId(this);
+        // Get the Client Metadata ID from the SDK
+        String metadataId = PayPalConfiguration.getClientMetadataId(this);
 
-        Log.i("FuturePaymentExample", "Application Correlation ID: " + correlationId);
+        Log.i("FuturePaymentExample", "Client Metadata ID: " + metadataId);
 
-        // TODO: Send correlationId and transaction details to your server for processing with
+        // TODO: Send metadataId and transaction details to your server for processing with
         // PayPal...
         Toast.makeText(
-                getApplicationContext(), "App Correlation ID received from SDK", Toast.LENGTH_LONG)
+                getApplicationContext(), "Client Metadata Id received from SDK", Toast.LENGTH_LONG)
                 .show();
     }
 

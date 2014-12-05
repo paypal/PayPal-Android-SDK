@@ -161,7 +161,7 @@ PayPalは、このアプリケーション相関IDを使用して、ユーザー
 ```java
 public void onFuturePaymentPurchasePressed(View pressed) {
 // SDKからアプリケーション相関IDを取得します。
-String correlationId = PayPalConfiguration.getApplicationCorrelationId(this);
+String metadataId = PayPalConfiguration.getClientMetadataId(this);
         
 // TODO: PayPalでの処理のため、相関IDと取引の詳細をサーバーに
 // 送信します。
@@ -169,7 +169,7 @@ String correlationId = PayPalConfiguration.getApplicationCorrelationId(this);
 ```
 
 
-サーバーは、PayPalへの支払いリクエストを作成する際、HTTPヘッダー`Paypal-Application-Correlation-Id`に、SDKから取得したこのアプリケーション相関IDの値を含める必要があります。
+サーバーは、PayPalへの支払いリクエストを作成する際、HTTPヘッダー`PayPal-Client-Metadata-Id`に、SDKから取得したこのアプリケーション相関IDの値を含める必要があります。
 
 
 次の手順

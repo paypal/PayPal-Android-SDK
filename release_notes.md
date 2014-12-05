@@ -1,6 +1,15 @@
 PayPal Android SDK release notes
 ================================
 
+2.8.0
+-----
+* Allow login by users who have enabled two-factor authentication on their PayPal accounts.
+* Update `Paypal-Application-Correlation-Id` header to `PayPal-Client-Metadata-Id`,
+  and deprecate `PayPalConfiguration.getApplicationCorrelationId()` in favor
+  of `PayPalConfiguration.getClientMetadataId()`.
+* Update sample app build tools version.
+* Minor bug fixes.
+
 2.7.3
 -----
 * Fix single payments issue affecting cross-app integrations.
