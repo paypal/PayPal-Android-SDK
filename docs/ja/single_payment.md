@@ -43,7 +43,6 @@ _オプションとして、アプリで、PayPal Android SDKがユーザーに*
 
     <!-- for most things, including card.io & paypal -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     ```
     

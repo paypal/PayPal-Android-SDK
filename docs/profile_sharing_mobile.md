@@ -47,7 +47,6 @@ The sample app provides a more complete example. However, at minimum, you must:
     ```xml   
     <!-- for most things, including card.io & paypal -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     ```
     

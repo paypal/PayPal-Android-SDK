@@ -47,7 +47,6 @@ PayPalアカウントの情報を共有するため、[お客さまの同意を�
     ```xml   
     <!-- for most things, including card.io & paypal -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     ```
     

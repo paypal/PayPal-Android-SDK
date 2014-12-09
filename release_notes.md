@@ -1,6 +1,12 @@
 PayPal Android SDK release notes
 ================================
 
+2.8.1
+-----
+* Fix issue where consent was not working for new users (bug introduced in 2.8.0).
+* Remove unneeded ACCESS_WIFI_STATE from integration docs.
+* Update sample app build tools version to 1.0.0.
+
 2.8.0
 -----
 * Allow login by users who have enabled two-factor authentication on their PayPal accounts.
