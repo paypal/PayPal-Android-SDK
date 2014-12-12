@@ -1,6 +1,16 @@
 PayPal Android SDK release notes
 ================================
 
+2.8.2
+-----
+* Fix consent privacy policy and user agreement links, and update the mock link urls.
+* Fix issue where the service would not properly restart after being backgrounded [#117](https://github.com/paypal/PayPal-Android-SDK/issues/117).
+  It is now recommended that developers pass the `PayPalConfiguration` object into the PayPal activities, in addition to `PayPalService`.
+  Updated the documentation and sample app with the suggested modifications.
+* Add documentation on correct `httpcomponents` dependencies, which addresses [#113](https://github.com/paypal/PayPal-Android-SDK/issues/113).
+* Update Visa branding.
+* Minor bug fixes.
+
 2.8.1
 -----
 * Fix issue where consent was not working for new users (bug introduced in 2.8.0).

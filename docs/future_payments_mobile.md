@@ -99,6 +99,9 @@ The sample app provides a more complete example. However, at minimum, you must:
     ```java
     public void onFuturePaymentPressed(View pressed) {
         Intent intent = new Intent(SampleActivity.this, PayPalFuturePaymentActivity.class);
+
+        // send the same configuration for restart resiliency
+        intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
         
         startActivityForResult(intent, REQUEST_CODE_FUTURE_PAYMENT);
     }

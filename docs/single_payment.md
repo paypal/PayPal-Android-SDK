@@ -110,6 +110,9 @@ The sample app provides a more complete example. However, at minimum, you must:
 
         Intent intent = new Intent(this, PaymentActivity.class);
 
+        // send the same configuration for restart resiliency
+        intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
+
         intent.putExtra(PaymentActivity.EXTRA_PAYMENT, payment);
 
         startActivityForResult(intent, 0);

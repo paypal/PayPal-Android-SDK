@@ -106,7 +106,12 @@ The sample app provides a more complete example. However, at minimum, you must:
     ```java
     public void onProfileSharingPressed(View pressed) {
         Intent intent = new Intent(SampleActivity.this, PayPalProfileSharingActivity.class);
+        
+        // send the same configuration for restart resiliency
+        intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
+
         intent.putExtra(PayPalProfileSharingActivity.EXTRA_REQUESTED_SCOPES, getOauthScopes());
+        
         startActivityForResult(intent, REQUEST_CODE_PROFILE_SHARING);
     }
     ```

@@ -91,6 +91,9 @@ public class SampleActivity extends Activity {
 
         Intent intent = new Intent(SampleActivity.this, PaymentActivity.class);
 
+        // send the same configuration for restart resiliency
+        intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
+
         intent.putExtra(PaymentActivity.EXTRA_PAYMENT, thingToBuy);
 
         startActivityForResult(intent, REQUEST_CODE_PAYMENT);
@@ -149,12 +152,20 @@ public class SampleActivity extends Activity {
     public void onFuturePaymentPressed(View pressed) {
         Intent intent = new Intent(SampleActivity.this, PayPalFuturePaymentActivity.class);
 
+        // send the same configuration for restart resiliency
+        intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
+
         startActivityForResult(intent, REQUEST_CODE_FUTURE_PAYMENT);
     }
 
     public void onProfileSharingPressed(View pressed) {
         Intent intent = new Intent(SampleActivity.this, PayPalProfileSharingActivity.class);
+
+        // send the same configuration for restart resiliency
+        intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
+
         intent.putExtra(PayPalProfileSharingActivity.EXTRA_REQUESTED_SCOPES, getOauthScopes());
+
         startActivityForResult(intent, REQUEST_CODE_PROFILE_SHARING);
     }
 

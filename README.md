@@ -17,6 +17,7 @@ The PayPal Android SDK makes it easy to add PayPal and credit card payments to m
 - [Testing](#testing)
 - [Documentation](#documentation)
 - [Usability](#usability)
+- [Dependency Conflicts](#dependency-conflicts)
 - [Moving to PayPal Android SDK 2.0](#moving-to-paypal-android-sdk-20)
 - [Next Steps](#next-steps)
 
@@ -139,6 +140,18 @@ During development, use `environment()` in the `PayPalConfiguration` object to c
 ## Usability
 
 User interface appearance and behavior is set within the library itself. For the sake of usability and user experience consistency, apps should not attempt to modify the SDK's behavior beyond the documented methods.
+
+
+## Dependency Conflicts
+
+The Android SDK is built on top of the [Apache HttpComponents](http://hc.apache.org/) library included within Android.  This can lead to a conflict if you provide your own copy of either Apache's [httpclient](http://hc.apache.org/httpcomponents-client-4.3.x/index.html), [httpcore](http://hc.apache.org/httpcomponents-core-4.3.x/index.html), or a package that depends on either of these, such as [httpmime](http://hc.apache.org/httpcomponents-client-4.3.x/httpmime/project-reports.html).  To resolve this, you must use [httpclient-android](http://hc.apache.org/httpcomponents-client-4.3.x/android-port.html) instead of httpcore and httpclient.  The following example is the Android equivalent of the httpmime, httpcore, and httpclient dependencies:
+
+```
+compile ('org.apache.httpcomponents:httpclient-android:4.3.5')
+compile ('org.apache.httpcomponents:httpmime:4.3.6') {
+    exclude(group: 'org.apache.httpcomponents', module: 'httpclient')
+}
+```
 
 
 ## Moving to PayPal Android SDK 2.0
