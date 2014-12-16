@@ -38,9 +38,9 @@ import java.util.Set;
 public class SampleActivity extends Activity {
     private static final String TAG = "paymentExample";
     /**
-     * - Set to PaymentActivity.ENVIRONMENT_PRODUCTION to move real money.
+     * - Set to PayPalConfiguration.ENVIRONMENT_PRODUCTION to move real money.
      * 
-     * - Set to PaymentActivity.ENVIRONMENT_SANDBOX to use your test credentials
+     * - Set to PayPalConfiguration.ENVIRONMENT_SANDBOX to use your test credentials
      * from https://developer.paypal.com
      * 
      * - Set to PayPalConfiguration.ENVIRONMENT_NO_NETWORK to kick the tires
