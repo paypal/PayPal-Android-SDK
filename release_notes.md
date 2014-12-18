@@ -1,6 +1,13 @@
 PayPal Android SDK release notes
 ================================
 
+2.8.3
+-----
+* Fix ClassNotFoundException issue in Parcelable classes.
+* Add better error messages for some common errors.
+* Minor bug fixes.
+* Fix several docs and SampleApp issues.
+
 2.8.2
 -----
 * Fix consent privacy policy and user agreement links, and update the mock link urls.

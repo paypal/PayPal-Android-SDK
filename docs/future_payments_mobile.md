@@ -163,7 +163,7 @@ Example:
 ```java
 public void onFuturePaymentPurchasePressed(View pressed) {
 // Get the Client Metadata ID from the SDK
-String metadataId = PayPalConfiguration.getMetadataId(this);
+String metadataId = PayPalConfiguration.getClientMetadataId(this);
         
 // TODO: Send metadataId and transaction details to your server for processing with
 // PayPal...
