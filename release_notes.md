@@ -1,6 +1,11 @@
 PayPal Android SDK release notes
 ================================
 
+2.8.4
+-----
+* Fix issue where resource is not properly closed [#125](https://github.com/paypal/PayPal-Android-SDK/issues/125).
+* Add even better error messages in all locales.
+
 2.8.3
 -----
 * Fix ClassNotFoundException issue in Parcelable classes.
