@@ -24,7 +24,6 @@ import android.widget.Toast;
 import org.json.JSONException;
 
 import java.math.BigDecimal;
-
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;

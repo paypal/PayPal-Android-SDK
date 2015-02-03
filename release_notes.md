@@ -1,6 +1,12 @@
 PayPal Android SDK release notes
 ================================
 
+2.8.5
+-----
+* Update card.io to 4.0.0.
+* Update sample app build tools version to 1.0.1.
+* Minor bug fixes.
+
 2.8.4
 -----
 * Fix issue where resource is not properly closed [#125](https://github.com/paypal/PayPal-Android-SDK/issues/125).
