@@ -1,6 +1,13 @@
 PayPal Android SDK release notes
 ================================
 
+2.8.6
+-----
+* Update card.io to 4.0.1.
+* Add button allowing user to create a new PayPal account.
+* Add more public logging.
+* Minor UI tweaks.
+
 2.8.5
 -----
 * Update card.io to 4.0.0.
