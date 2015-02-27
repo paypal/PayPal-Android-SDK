@@ -1,6 +1,12 @@
 PayPal Android SDK release notes
 ================================
 
+2.8.7
+-----
+* Enforce required permissions: `ACCESS_NETWORK_STATE` and `INTERNET`.
+* Gracefully handle devices that do not return network state.
+* Better null handling.
+
 2.8.6
 -----
 * Update card.io to 4.0.1.
