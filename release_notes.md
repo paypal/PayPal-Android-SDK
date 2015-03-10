@@ -1,6 +1,12 @@
 PayPal Android SDK release notes
 ================================
 
+2.8.8
+-----
+* Change "Send Payment" button to "Pay". (see https://github.com/paypal/PayPal-iOS-SDK/issues/174)
+* Minor bug fixes.
+* Update card.io to 5.0.0.
+
 2.8.7
 -----
 * Enforce required permissions: `ACCESS_NETWORK_STATE` and `INTERNET`.
