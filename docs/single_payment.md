@@ -105,7 +105,7 @@ The sample app provides a more complete example. However, at minimum, you must:
         //   - PAYMENT_INTENT_ORDER to create a payment for authorization and capture
         //     later via calls from your server.
 
-        PayPalPayment payment = new PayPalPayment(new BigDecimal("1.75"), "USD", "hipster jeans",
+        PayPalPayment payment = new PayPalPayment(new BigDecimal("1.75"), "USD", "sample item",
                 PayPalPayment.PAYMENT_INTENT_SALE);
 
         Intent intent = new Intent(this, PaymentActivity.class);

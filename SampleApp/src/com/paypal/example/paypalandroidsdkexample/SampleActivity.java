@@ -58,7 +58,7 @@ public class SampleActivity extends Activity {
             .environment(CONFIG_ENVIRONMENT)
             .clientId(CONFIG_CLIENT_ID)
             // The following are only used in PayPalFuturePaymentActivity.
-            .merchantName("Hipster Store")
+            .merchantName("Example Merchant")
             .merchantPrivacyPolicyUri(Uri.parse("https://www.example.com/privacy"))
             .merchantUserAgreementUri(Uri.parse("https://www.example.com/legal"));
 
@@ -99,7 +99,7 @@ public class SampleActivity extends Activity {
     }
     
     private PayPalPayment getThingToBuy(String paymentIntent) {
-        return new PayPalPayment(new BigDecimal("1.75"), "USD", "hipster jeans",
+        return new PayPalPayment(new BigDecimal("1.75"), "USD", "sample item",
                 paymentIntent);
     }
     
@@ -110,11 +110,11 @@ public class SampleActivity extends Activity {
         //--- include an item list, payment amount details
         PayPalItem[] items =
             {
-                    new PayPalItem("old jeans with holes", 2, new BigDecimal("87.50"), "USD",
+                    new PayPalItem("sample item #1", 2, new BigDecimal("87.50"), "USD",
                             "sku-12345678"),
-                    new PayPalItem("free rainbow patch", 1, new BigDecimal("0.00"),
+                    new PayPalItem("free sample item #2", 1, new BigDecimal("0.00"),
                             "USD", "sku-zero-price"),
-                    new PayPalItem("long sleeve plaid shirt (no mustache included)", 6, new BigDecimal("37.99"),
+                    new PayPalItem("sample item #3 with a longer name", 6, new BigDecimal("37.99"),
                             "USD", "sku-33333") 
             };
         BigDecimal subtotal = PayPalItem.getItemTotal(items);
@@ -122,7 +122,7 @@ public class SampleActivity extends Activity {
         BigDecimal tax = new BigDecimal("4.67");
         PayPalPaymentDetails paymentDetails = new PayPalPaymentDetails(shipping, subtotal, tax);
         BigDecimal amount = subtotal.add(shipping).add(tax);
-        PayPalPayment payment = new PayPalPayment(amount, "USD", "hipster jeans", paymentIntent);
+        PayPalPayment payment = new PayPalPayment(amount, "USD", "sample item", paymentIntent);
         payment.items(items).paymentDetails(paymentDetails);
 
         //--- set other optional fields like invoice_number, custom field, and soft_descriptor

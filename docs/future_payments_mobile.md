@@ -67,7 +67,7 @@ The sample app provides a more complete example. However, at minimum, you must:
             
             // Minimally, you will need to set three merchant information properties.
     		// These should be the same values that you provided to PayPal when you registered your app.
-            .merchantName("Hipster Store")
+            .merchantName("Example Store")
             .merchantPrivacyPolicyUri(Uri.parse("https://www.example.com/privacy"))
             .merchantUserAgreementUri(Uri.parse("https://www.example.com/legal"));
 	```

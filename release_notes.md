@@ -1,6 +1,14 @@
 PayPal Android SDK release notes
 ================================
 
+2.9.0
+-----
+* Add `PayPalService.clearAllUserData(Context)` [#88](https://github.com/paypal/PayPal-Android-SDK/issues/88).  Note: this method requires the use of the [Android Support Library](http://developer.android.com/tools/support-library/index.html), due to its use of `LocalBroadcastManager`.  This SDK can still be used without the support library, but this method will not function.
+* Fix validation of `PayPalItem`: `sku` is no longer required, currencies and amounts have more strict validation [#153](https://github.com/paypal/PayPal-Android-SDK/issues/153).
+* Fix issue where too many profile sharing attributes were shown to the user.
+* Change name of `ENVIRONMENT_NO_NETWORK` merchant.
+* Minor bug fixes.
+
 2.8.8
 -----
 * Change "Send Payment" button to "Pay". (see https://github.com/paypal/PayPal-iOS-SDK/issues/174)

@@ -104,7 +104,7 @@ _オプションとして、アプリで、PayPal Android SDKがユーザーに*
         //   - 承認用に支払いを作成し後でサーバーからのコールにより回収する
         //     PAYMENT_INTENT_ORDER
 
-        PayPalPayment payment = new PayPalPayment(new BigDecimal("1.75"), "USD", "hipster jeans",
+        PayPalPayment payment = new PayPalPayment(new BigDecimal("1.75"), "USD", "sample item",
                 PayPalPayment.PAYMENT_INTENT_SALE);
 
         Intent intent = new Intent(this, PaymentActivity.class);

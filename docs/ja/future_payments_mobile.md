@@ -68,7 +68,7 @@ _まだ実行していない場合は、プロジェクトにSDKを追加する�
             
             // 最低限3つのマーチャント情報プロパティを設定する必要があります。
     		 //  これらは、アプリを登録した際にPayPalに提供した値と同じである必要があります。
-            .merchantName("Hipster Store")
+            .merchantName("Example Store")
             .merchantPrivacyPolicyUri(Uri.parse("https://www.example.com/privacy"))
             .merchantUserAgreementUri(Uri.parse("https://www.example.com/legal"));
 	```
