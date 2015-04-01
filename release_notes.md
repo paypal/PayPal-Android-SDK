@@ -1,6 +1,14 @@
 PayPal Android SDK release notes
 ================================
 
+2.9.1
+-----
+* Fix crashing issue on Android `2.3.*` devices [#159](https://github.com/paypal/PayPal-Android-SDK/issues/159).
+* Fix `PayPalService.clearAllUserData()` to clear all environments when `PayPalService` is not running [#155](https://github.com/paypal/PayPal-Android-SDK/issues/155).  If `PayPalService` is running, the v4 support library is still required to clear the current user data.
+* Fix issue with `PayPalService.clearAllUserData()` not actually clearing the current user [#156](https://github.com/paypal/PayPal-Android-SDK/issues/156).
+* Add some helpful logging to `PayPalService.clearAllUserData()`.
+* Minor bug fixes.
+
 2.9.0
 -----
 * Add `PayPalService.clearAllUserData(Context)` [#88](https://github.com/paypal/PayPal-Android-SDK/issues/88).  Note: this method requires the use of the [Android Support Library](http://developer.android.com/tools/support-library/index.html), due to its use of `LocalBroadcastManager`.  This SDK can still be used without the support library, but this method will not function.
