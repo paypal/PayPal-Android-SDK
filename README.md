@@ -58,11 +58,10 @@ Your customer logs in to PayPal and consents to PayPal sharing information with 
 
 ## Integration with the PayPal Wallet App
 
-The SDK will now use the newest version of the PayPal Wallet App if present on the device (available only on the [Samsung app store](apps.samsung.com/mars/topApps/topAppsDetail.as?categoryId=G000019679&productId=000000794995)) to log in to a customer account.  No additional configuration is required to enable this feature.  This integration enables device-specific PayPal [FIDO](https://fidoalliance.org/) integrations, including login by fingerprint on the Galaxy S5.  In addition, a user who logged in to the PayPal Wallet App and checked "Keep me logged in" may not need to log-in again when paying with your app.  For more information on how this all works, please read the [blog post](http://www.embedded.com/design/real-world-applications/4430305/Implementing-Android-based-fingerprint-authentication-for-online-payments) from one of our architects.
+The SDK will now use the newest version of the PayPal Wallet App if present on the device to log in to a customer account.  No additional configuration is required to enable this feature.  This integration enables device-specific PayPal [FIDO](https://fidoalliance.org/) integrations, including login by fingerprint on the Galaxy S5.  In addition, a user who logged in to the PayPal Wallet App and checked "Keep me logged in" may not need to log-in again when paying with your app.  For more information on how this all works, please read the [blog post](http://www.embedded.com/design/real-world-applications/4430305/Implementing-Android-based-fingerprint-authentication-for-online-payments) from one of our architects.
 
 ### Limitations
 
-* The supported app will only be available in the [Samsung app store](apps.samsung.com/mars/topApps/topAppsDetail.as?categoryId=G000019679&productId=000000794995).  The version of the PayPal Wallet App in the Google Play store does not support this integration yet.  
 * The integration will _not_ be enabled in any of the [testing](#testing) modes, as the Wallet app does not support this developer testing environonment.
 
 ## Requirements
