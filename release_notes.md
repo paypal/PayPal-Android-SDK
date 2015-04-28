@@ -1,6 +1,13 @@
 PayPal Android SDK release notes
 ================================
 
+2.9.2
+-----
+* Remove dependency on the [Android Support Library](http://developer.android.com/tools/support-library/index.html).
+* Fix NoClassDefFoundError issue with AdvertisingIdClient [#157](https://github.com/paypal/PayPal-Android-SDK/issues/157).
+* Fix ClassCastException issue with GsmCellLocation [#160](https://github.com/paypal/PayPal-Android-SDK/issues/160).
+* Minor bug fixes.
+
 2.9.1
 -----
 * Fix crashing issue on Android `2.3.*` devices [#159](https://github.com/paypal/PayPal-Android-SDK/issues/159).
