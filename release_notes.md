@@ -1,6 +1,10 @@
 PayPal Android SDK release notes
 ================================
 
+2.9.4
+-----
+* Fix rare NPE issue [#163](https://github.com/paypal/PayPal-Android-SDK/issues/163).
+
 2.9.3
 -----
 * Remove dependency on the [Android Support Library](http://developer.android.com/tools/support-library/index.html).
