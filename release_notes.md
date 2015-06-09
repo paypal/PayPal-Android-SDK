@@ -1,6 +1,11 @@
 PayPal Android SDK release notes
 ================================
 
+2.9.6
+-----
+* Fix issue where card.io compatibility was being checked even if credit cards are disabled [#173](https://github.com/paypal/PayPal-Android-SDK/issues/173).
+* Update card.io to 5.0.1.
+
 2.9.5
 -----
 * Update sample app build tools version to 1.2.2, compileSdkVersion to 22, and build tools version to 22.0.1.
