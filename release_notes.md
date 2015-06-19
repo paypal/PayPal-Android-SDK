@@ -1,6 +1,12 @@
 PayPal Android SDK release notes
 ================================
 
+2.9.7
+-----
+* Fix rare instance of PAYMENT_CREATION_ERROR.
+* Fix rare crashing issue on some devices when checking permissions [#167](https://github.com/paypal/PayPal-Android-SDK/issues/167).
+* Upgrade build tools.
+
 2.9.6
 -----
 * Fix issue where card.io compatibility was being checked even if credit cards are disabled [#173](https://github.com/paypal/PayPal-Android-SDK/issues/173).
