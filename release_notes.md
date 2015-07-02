@@ -1,6 +1,11 @@
 PayPal Android SDK release notes
 ================================
 
+2.9.8
+-----
+* Fix rare crash in `PayPalService` [#166](https://github.com/paypal/PayPal-Android-SDK/issues/166).
+* Minor bug fixes.
+
 2.9.7
 -----
 * Fix rare instance of PAYMENT_CREATION_ERROR.
