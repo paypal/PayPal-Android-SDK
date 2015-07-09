@@ -1,6 +1,10 @@
 PayPal Android SDK release notes
 ================================
 
+2.9.10
+------
+* Minor bug fixes.
+
 2.9.9
 -----
 * Fix rare crash when making a single payment [#179](https://github.com/paypal/PayPal-Android-SDK/issues/179).
