@@ -1,9 +1,7 @@
-**We recommend [v.zero](https://www.braintreepayments.com/v.zero) on [Braintree Android](https://github.com/braintree/braintree_android) as the easiest general purpose payment acceptance solution in [supported countries](https://www.braintreepayments.com/country-selection).**
-
 PayPal Android SDK
 ==================
 
-Use PayPal Android SDK for direct integration with the [PayPal REST API](https://developer.paypal.com/webapps/developer/docs/api/) on Android. 
+The PayPal Android SDK makes it easy to add PayPal and credit card payments to mobile apps.
 
 *This documentation is available in Japanese: [日本語のドキュメント](docs/ja/README.md).*
 

@@ -1,6 +1,10 @@
 PayPal Android SDK release notes
 ================================
 
+2.9.11
+------
+* Minor bug fixes.
+
 2.9.10
 ------
 * Minor bug fixes.
