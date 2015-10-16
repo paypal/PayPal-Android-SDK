@@ -92,4 +92,3 @@
 # (does not include card.io)
 
 -dontwarn com.google.android.gms.**
--dontwarn android.support.v4.**

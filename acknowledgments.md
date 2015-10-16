@@ -7,7 +7,7 @@ The PayPal Android SDK uses code from the following libraries:
   * Willow Garage's [OpenCV](http://opencv.willowgarage.com/wiki/)
   * [Eigen](http://eigen.tuxfamily.org)
   * [Mersenne Twister](http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/emt.html)
-  * Loopj's [Android Asnyc HTTP](http://loopj.com/android-async-http/)
+  * Square's [OkHttp](http://square.github.io/okhttp/)
   * Apache Commons' [Commons Lang](http://commons.apache.org/proper/commons-lang/)
 
 
@@ -16,7 +16,7 @@ Full licenses
 
 PayPal's card.io, MIT license:
 
-    Copyright (c) 2013-2014 PayPal
+    Copyright (c) 2013-2015 PayPal
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -82,12 +82,21 @@ Makoto Matsumoto and Takuji Nishimura's [Mersenne Twister](http://www.math.sci.h
     SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     
     
-Loopj's Android Async HTTP, Apache License 2.0:
+Square OkHttp, Apache 2.0 license:
 
-    Actual license text not provided -- [The loopj website](http://loopj.com/android-async-http/) states:
-    
-        "The Android Asynchronous Http Client is released under the Android-friendly Apache License, 
-         Version 2.0. Read the full license here: http://www.apache.org/licenses/LICENSE-2.0"
+    Copyright 2014 Square, Inc.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
 
 
 Apache Commons Lang, Apache 2.0 license:
