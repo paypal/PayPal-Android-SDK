@@ -68,15 +68,14 @@ The SDK will now use the newest version of the PayPal Wallet App if present on t
 
 ## Requirements
 
-* Android 2.2 or later
-* card.io card scanning available only on armv7 devices
+* Android 2.3.3 (API 10) or later
 * Phone or tablet
 
 
 ## Add the SDK to Your Project
 
 1. Download or clone this repo. The SDK includes a .jar, static libraries, release notes, and license acknowledgements. It also includes a sample app.
-2. Copy the contents of the SDK `libs` directory into your project's `libs` directory. The path to these files is important; if it is not exactly correct, the SDK will not work.  (_NOTE:_ If you are using Gradle, copy SDK jar file into your project's `libs` directory, `add as library` to project, and finally copy the SDK folders containing the *.so files into `src/main/jniLibs`.)
+2. Copy the contents of the SDK `libs` directory into your project's `libs` directory. The path to these files is important; if it is not exactly correct, the SDK will not work.  (_NOTE:_ When using Gradle, copy SDK jar file into your project's `libs` directory, `add as library` to project, and finally copy the SDK folders containing the *.so files into `src/main/jniLibs`.)
 3. Add the open source license acknowledgments from `acknowledgments.md` to your app's acknowledgments.
 
 
@@ -118,7 +117,7 @@ If your app initiates a transaction with a currency that turns out to be unsuppo
 
 ## Disabling card.io card scanning
 
-Future payments does not require card.io card scanning, so it is safe to remove the camera scanner libraries by removing the following folders within the `lib` directory: `armeabi`, `armeabi-v7a`, `mips`, and `x86`.
+Future payments does not require card.io card scanning, so it is safe to remove the camera scanner libraries by removing the following folders within the `lib` directory: `arm64-v8a`, `armeabi`, `armeabi-v7a`, `mips`, `x86`, `x86_64`.
 
 Single Payments can be configured to accept credit cards through manual entry, but without card scanning.  To do so, remove the same libs above, and remove `android.permission.CAMERA` and `android.permission.VIBRATE` permissions from `AndroidManifest.xml`.  If you wish to disable credit card support altogether, follow the above steps to reduce the permissions and sdk footprint, and add the following to the `PayPalConfiguration` initialization:
 ```

@@ -1,6 +1,13 @@
 PayPal Android SDK release notes
 ================================
 
+2.11.1
+------
+* Fix crash in `PayPalService.onDestroy()` [#212](https://github.com/paypal/PayPal-Android-SDK/issues/212).
+* Fix case where shipping address selections were inadvertently displayed to the user [#213](https://github.com/paypal/PayPal-Android-SDK/issues/213).
+* Decrease minSdkVersion back down to 10 (GINGERBREAD_MR1).
+* Convert SampleApp to only use Gradle builds.
+
 2.11.0
 ------
 * Target Android 23 (M).
