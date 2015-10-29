@@ -1,6 +1,11 @@
 PayPal Android SDK release notes
 ================================
 
+2.11.2
+------
+* Minor bug fixes.
+* Update card.io to 5.1.2.
+
 2.11.1
 ------
 * Fix crash in `PayPalService.onDestroy()` [#212](https://github.com/paypal/PayPal-Android-SDK/issues/212).
