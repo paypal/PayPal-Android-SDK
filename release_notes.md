@@ -1,6 +1,11 @@
 PayPal Android SDK release notes
 ================================
 
+2.12.0
+------
+* Allow TLSv1.2 for API 16-19 devices, and add a special error message if PayPal requires TLSv1.2 but the device cannot comply.
+* Add a LogCat warning during PayPalService initialization when an Android version < API 16 (JELLY_BEAN) is detected.
+
 2.11.2
 ------
 * Minor bug fixes.
