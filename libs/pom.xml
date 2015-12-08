@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.paypal.sdk</groupId>
+  <artifactId>paypal-android-sdk</artifactId>
+  <version>2.12.2</version>
+  <packaging>aar</packaging>
+  <name>paypal-android-sdk</name>
+  <description>This is PayPal's SDK for Android.</description>
+  <url>scm:git@github.com:paypal/PayPal-Android-SDK.git</url>
+  <licenses>
+    <license>
+      <name>BSD</name>
+      <url>https://github.com/paypal/PayPal-Android-SDK/blob/master/LICENSE.md</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <id>PayPal-Android-SDK-Team</id>
+      <name>PayPal-Android-SDK-Team</name>
+      <url>https://www.paypal.com</url>
+      <organizationUrl>https://www.paypal.com</organizationUrl>
+    </developer>
+  </developers>
+  <scm>
+    <connection>scm:git@github.com:paypal/PayPal-Android-SDK.git</connection>
+    <developerConnection>scm:git@github.com:paypal/PayPal-Android-SDK.git</developerConnection>
+    <url>scm:git@github.com:paypal/PayPal-Android-SDK.git</url>
+  </scm>
+  <dependencies>
+    <dependency>
+      <groupId>com.squareup.okhttp</groupId>
+      <artifactId>okhttp</artifactId>
+      <version>2.5.0</version>
+    </dependency>
+    <dependency>
+      <groupId>io.card</groupId>
+      <artifactId>android-sdk</artifactId>
+      <version>5.1.2</version>
+    </dependency>
+  </dependencies>
+</project>
