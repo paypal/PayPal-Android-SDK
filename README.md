@@ -21,6 +21,14 @@ The PayPal Android SDK makes it easy to add PayPal and credit card payments to m
 - [Moving to PayPal Android SDK 2.0](#moving-to-paypal-android-sdk-20)
 - [Next Steps](#next-steps)
 
+## Setup
+
+The PayPal Android SDK is now available at [Maven Repository](https://repo1.maven.org/maven2/com/paypal/sdk/paypal-android-sdk/). The latest version is available via `mavenCentral()`.  Just add the following dependency from `mavenCentral()`:
+
+```
+compile 'com.paypal.sdk:paypal-android-sdk:2.12.3'
+```
+
 
 ## Use Cases
 

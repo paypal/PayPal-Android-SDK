@@ -1,6 +1,18 @@
 PayPal Android SDK release notes
 ================================
 
+2.12.3
+-----
+* SDK is now available at Maven Central
+*  `com.paypal.sdk:paypal-android-sdk:2.12.3`
+* Fixes #14
+* Fixes #208
+
+2.12.2
+------
+* Enabled aar packaging
+* Ability to push to maven
+
 2.12.1
 ------
 * Fix bug introduced in 2.12.0 that caused older devices to fail prematurely.
