@@ -54,5 +54,5 @@ android {
 }
 
 dependencies {
-    compile('com.paypal.sdk:paypal-android-sdk:2.12.3')
+    compile('com.paypal.sdk:paypal-android-sdk:2.12.4')
 }

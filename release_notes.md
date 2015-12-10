@@ -1,6 +1,10 @@
 PayPal Android SDK release notes
 ================================
 
+2.12.4
+----
+* Documentation Updates for Maven based integrations
+
 2.12.3
 -----
 * SDK is now available at Maven Central

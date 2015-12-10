@@ -43,23 +43,7 @@ Obtain Customer Consent
 
 The sample app provides a more complete example. However, at minimum, you must:
 
-1. Add permissions to your `AndroidManifest.xml` file:
-    ```xml   
-    <!-- for most things, including card.io & paypal -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    ```
-    
-1. Declare SDK service and activities in your `AndroidManifest.xml` file within the `<application>` tag:
-    ```xml
-    <service android:name="com.paypal.android.sdk.payments.PayPalService"
-            android:exported="false" />
-        
-    <activity android:name="com.paypal.android.sdk.payments.FuturePaymentInfoActivity" />
-    <activity android:name="com.paypal.android.sdk.payments.LoginActivity" />
-    <activity android:name="com.paypal.android.sdk.payments.PayPalProfileSharingActivity" />
-    <activity android:name="com.paypal.android.sdk.payments.ProfileSharingConsentActivity" />
-    ```
+1. Add PayPal Android SDK dependency to your `build.gradle` file as shown in README.md
 
 1. Create a `PayPalConfiguration` object.  This object allows you to configure various aspects of the SDK.
 
