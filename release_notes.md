@@ -1,21 +1,27 @@
 PayPal Android SDK release notes
 ================================
+2.12.5
+----
+* Updated okhttp to 2.7.2. 
+* Minor bug fixes.
+* Fixes #233.
 
 2.12.4
 ----
-* Documentation Updates for Maven based integrations
+* Documentation Updates for Maven based integrations.
+* Disabled `allowBackup` in Manifest.
 
 2.12.3
 -----
-* SDK is now available at Maven Central
-*  `com.paypal.sdk:paypal-android-sdk:2.12.3`
-* Fixes #14
-* Fixes #208
+* SDK is now available at Maven Central.
+*  `com.paypal.sdk:paypal-android-sdk:2.12.3`.
+* Fixes #14.
+* Fixes #208.
 
 2.12.2
 ------
-* Enabled aar packaging
-* Ability to push to maven
+* Enabled aar packaging.
+* Ability to push to maven.
 
 2.12.1
 ------
