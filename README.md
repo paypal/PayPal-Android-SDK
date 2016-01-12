@@ -95,6 +95,14 @@ While testing your app, when logging in to PayPal in the SDK's UI you should use
 
 You can create both business and personal Sandbox accounts on the [Sandbox accounts](https://developer.paypal.com/webapps/developer/applications/accounts) page.
 
+#### Sandbox and TLSv1.2
+
+PayPal will be upgrading the endpoint that the PayPal Android SDK uses to communicate with PayPal servers on Jan 18th, 2016.  If you're testing on sandbox with a version of the PayPal Android SDK older than 2.12.1, then you'll start seeing communication failures when using Android devices >= API 16, and < API 20.  Please upgrade to a version 2.12.1 or higher to fix these errors.
+
+If you're testing on a device older than API 16, Android will not be able to communicate with PayPal, no matter what version of the SDK you use.
+
+These TLS changes coincides with the TLSv1.2 security mandate outlined here, and will be followed by a similar change to the Production endpoints at some later date.  For any questions or concerns, please create an issue.
+
 ### Live
 
 To obtain your **live** credentials, you will need to have a business account. If you don't yet have a business account, there is a link at the bottom of that same Applications page that will get you started.
