@@ -26,7 +26,7 @@ The PayPal Android SDK makes it easy to add PayPal and credit card payments to m
 The PayPal Android SDK is now available at [Maven Repository](https://repo1.maven.org/maven2/com/paypal/sdk/paypal-android-sdk/). The latest version is available via `mavenCentral()`.  Just add the following dependency from `mavenCentral()`:
 
 ```
-compile 'com.paypal.sdk:paypal-android-sdk:2.12.5'
+compile 'com.paypal.sdk:paypal-android-sdk:2.13.0'
 ```
 
 
@@ -97,7 +97,7 @@ You can create both business and personal Sandbox accounts on the [Sandbox accou
 
 #### Sandbox and TLSv1.2
 
-PayPal will be upgrading the endpoint that the PayPal Android SDK uses to communicate with PayPal servers on Jan 18th, 2016.  If you're testing on sandbox with a version of the PayPal Android SDK older than 2.12.1, then you'll start seeing communication failures when using Android devices >= API 16, and < API 20.  Please upgrade to a version [2.12.1](https://github.com/paypal/PayPal-Android-SDK/releases) or higher to fix these errors.
+PayPal will be upgrading the endpoint that the PayPal Android SDK uses to communicate with PayPal servers on Jan 18th, 2016.  If you're testing on sandbox with a version of the PayPal Android SDK older than 2.13.0, then you'll start seeing communication failures when using Android devices >= API 16, and < API 20.  Please upgrade to a version [2.13.0](https://github.com/paypal/PayPal-Android-SDK/releases) or higher to fix these errors.
 
 If you're testing on a device older than API 16, Android will not be able to communicate with PayPal, no matter what version of the SDK you use.
 
@@ -128,67 +128,43 @@ If your app initiates a transaction with a currency that turns out to be unsuppo
 Future payments does not require card.io card scanning. Also, for single payments, if you do not wish to include the scanning feature of Card.io, and only allow manual entry by keyboard, add packagingOptions to remove the .so libraries of card.io as shown below in build.gradle:
 ```
 packagingOptions {
-        exclude 'lib/arm64-v8a/libcardioDecider.so'
-        exclude 'lib/arm64-v8a/libcardioRecognizer.so'
-        exclude 'lib/arm64-v8a/libcardioRecognizer_tegra2.so'
-        exclude 'lib/arm64-v8a/libopencv_core.so'
-        exclude 'lib/arm64-v8a/libopencv_imgproc.so'
-        exclude 'lib/armeabi/libcardioDecider.so'
-        exclude 'lib/armeabi-v7a/libcardioDecider.so'
-        exclude 'lib/armeabi-v7a/libcardioRecognizer.so'
-        exclude 'lib/armeabi-v7a/libcardioRecognizer_tegra2.so'
-        exclude 'lib/armeabi-v7a/libopencv_core.so'
-        exclude 'lib/armeabi-v7a/libopencv_imgproc.so'
-        exclude 'lib/mips/libcardioDecider.so'
-        exclude 'lib/x86/libcardioDecider.so'
-        exclude 'lib/x86/libcardioRecognizer.so'
-        exclude 'lib/x86/libcardioRecognizer_tegra2.so'
-        exclude 'lib/x86/libopencv_core.so'
-        exclude 'lib/x86/libopencv_imgproc.so'
-        exclude 'lib/x86_64/libcardioDecider.so'
-        exclude 'lib/x86_64/libcardioRecognizer.so'
-        exclude 'lib/x86_64/libcardioRecognizer_tegra2.so'
-        exclude 'lib/x86_64/libopencv_core.so'
-        exclude 'lib/x86_64/libopencv_imgproc.so'
-    }
+    exclude 'lib/arm64-v8a/libcardioDecider.so'
+    exclude 'lib/arm64-v8a/libcardioRecognizer.so'
+    exclude 'lib/arm64-v8a/libcardioRecognizer_tegra2.so'
+    exclude 'lib/arm64-v8a/libopencv_core.so'
+    exclude 'lib/arm64-v8a/libopencv_imgproc.so'
+    exclude 'lib/armeabi/libcardioDecider.so'
+    exclude 'lib/armeabi-v7a/libcardioDecider.so'
+    exclude 'lib/armeabi-v7a/libcardioRecognizer.so'
+    exclude 'lib/armeabi-v7a/libcardioRecognizer_tegra2.so'
+    exclude 'lib/armeabi-v7a/libopencv_core.so'
+    exclude 'lib/armeabi-v7a/libopencv_imgproc.so'
+    exclude 'lib/mips/libcardioDecider.so'
+    exclude 'lib/x86/libcardioDecider.so'
+    exclude 'lib/x86/libcardioRecognizer.so'
+    exclude 'lib/x86/libcardioRecognizer_tegra2.so'
+    exclude 'lib/x86/libopencv_core.so'
+    exclude 'lib/x86/libopencv_imgproc.so'
+    exclude 'lib/x86_64/libcardioDecider.so'
+    exclude 'lib/x86_64/libcardioRecognizer.so'
+    exclude 'lib/x86_64/libcardioRecognizer_tegra2.so'
+    exclude 'lib/x86_64/libopencv_core.so'
+    exclude 'lib/x86_64/libopencv_imgproc.so'
+}
 ```
 
 ## Disabling Credit Card Payments Completely
 
 If you want to disable credit card completely:
 
-1. Remove camera scanner libraries by adding the following to your `android` build.gradle object:
+1. Exclude card.io library in your application build.gradle file:
 ```
-packagingOptions {
-        exclude 'lib/arm64-v8a/libcardioDecider.so'
-        exclude 'lib/arm64-v8a/libcardioRecognizer.so'
-        exclude 'lib/arm64-v8a/libcardioRecognizer_tegra2.so'
-        exclude 'lib/arm64-v8a/libopencv_core.so'
-        exclude 'lib/arm64-v8a/libopencv_imgproc.so'
-        exclude 'lib/armeabi/libcardioDecider.so'
-        exclude 'lib/armeabi-v7a/libcardioDecider.so'
-        exclude 'lib/armeabi-v7a/libcardioRecognizer.so'
-        exclude 'lib/armeabi-v7a/libcardioRecognizer_tegra2.so'
-        exclude 'lib/armeabi-v7a/libopencv_core.so'
-        exclude 'lib/armeabi-v7a/libopencv_imgproc.so'
-        exclude 'lib/mips/libcardioDecider.so'
-        exclude 'lib/x86/libcardioDecider.so'
-        exclude 'lib/x86/libcardioRecognizer.so'
-        exclude 'lib/x86/libcardioRecognizer_tegra2.so'
-        exclude 'lib/x86/libopencv_core.so'
-        exclude 'lib/x86/libopencv_imgproc.so'
-        exclude 'lib/x86_64/libcardioDecider.so'
-        exclude 'lib/x86_64/libcardioRecognizer.so'
-        exclude 'lib/x86_64/libcardioRecognizer_tegra2.so'
-        exclude 'lib/x86_64/libopencv_core.so'
-        exclude 'lib/x86_64/libopencv_imgproc.so'
+dependencies {
+    compile('com.paypal.sdk:paypal-android-sdk:2.13.0') {
+        exclude group: 'io.card'
     }
+}
 ```
-1. Add the following to the `PayPalConfiguration` initialization:
-```
-config.acceptCreditCards(false);
-```
-
 
 ## Testing
 
