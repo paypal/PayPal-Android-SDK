@@ -1,6 +1,10 @@
 PayPal Android SDK release notes
 ================================
 
+2.13.1
+------
+* Fix issue preventing the SDK from app-switching to newer versions of the PayPal App.
+
 2.13.0
 ------
 * Fix sandbox pinning issue [#228](https://github.com/paypal/PayPal-Android-SDK/issues/228).

@@ -71,6 +71,6 @@ dependencies {
     if (parent != null) {
         compile project(path: ':androidSDK', configuration: 'generalDebug')
     } else {
-        compile('com.paypal.sdk:paypal-android-sdk:2.13.0')
+        compile('com.paypal.sdk:paypal-android-sdk:2.13.1')
     }
 }
