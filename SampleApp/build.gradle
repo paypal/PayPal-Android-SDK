@@ -3,11 +3,15 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.3.0'
+        classpath 'com.android.tools.build:gradle:1.2.3'
     }
 }
 
 repositories {
+    maven {
+        // Used for downloading dependency com.github.lkorth:device-automator
+        url "https://jitpack.io"
+    }
     mavenCentral()
 }
 
@@ -18,8 +22,9 @@ android {
     buildToolsVersion '23.0.1'
 
     defaultConfig {
-        minSdkVersion 10
+        minSdkVersion 18
         targetSdkVersion 23
+        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
 
     signingConfigs {
@@ -67,10 +72,24 @@ android {
     }
 }
 
+configurations.all {
+    resolutionStrategy.force 'com.android.support:support-annotations:23.0.1'
+}
+
+
 dependencies {
     if (parent != null) {
         compile project(path: ':androidSDK', configuration: 'generalDebug')
     } else {
-        compile('com.paypal.sdk:paypal-android-sdk:2.13.1')
+        compile('com.paypal.sdk:paypal-android-sdk:2.13.2')
     }
+    compile 'com.google.android.gms:play-services-wallet:8.1.0'
+
+    testCompile 'com.android.support.test.espresso:espresso-core:2.2.1'
+    androidTestCompile 'com.github.lkorth:device-automator:30238040d8'
+    testCompile 'com.google.dexmaker:dexmaker-mockito:1.1'
+    testCompile 'com.android.support.test.espresso:espresso-intents:2.2.1'
+    testCompile 'com.android.support.test.espresso:espresso-web:2.2.1'
+    testCompile 'com.android.support.test:runner:0.4.1'
+    testCompile 'com.android.support.test:rules:0.4.1'
 }

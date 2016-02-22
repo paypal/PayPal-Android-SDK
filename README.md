@@ -26,7 +26,7 @@ The PayPal Android SDK makes it easy to add PayPal and credit card payments to m
 The PayPal Android SDK is now available at [Maven Repository](https://repo1.maven.org/maven2/com/paypal/sdk/paypal-android-sdk/). The latest version is available via `mavenCentral()`.  Just add the following dependency from `mavenCentral()`:
 
 ```
-compile 'com.paypal.sdk:paypal-android-sdk:2.13.1'
+compile 'com.paypal.sdk:paypal-android-sdk:2.13.2'
 ```
 
 
@@ -160,7 +160,7 @@ If you want to disable credit card completely:
 1. Exclude card.io library in your application build.gradle file:
 ```
 dependencies {
-    compile('com.paypal.sdk:paypal-android-sdk:2.13.1') {
+    compile('com.paypal.sdk:paypal-android-sdk:2.13.2') {
         exclude group: 'io.card'
     }
 }
