@@ -1,9 +1,14 @@
 PayPal Android SDK release notes
 ================================
 
+2.13.3
+------
+* Update okhttp dependency to 3.1.2.
+* Really fixes issue related to okhttp 3.1.2 [#258](https://github.com/paypal/PayPal-Android-SDK/issues/258).
+
 2.13.2
 ------
-* Fixes issue related to okhttp v3.1.2 [#258](https://github.com/paypal/PayPal-Android-SDK/issues/258)
+* Fixes issue related to okhttp 3.1.2 [#258](https://github.com/paypal/PayPal-Android-SDK/issues/258).
 
 2.13.1
 ------
