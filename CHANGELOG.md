@@ -1,6 +1,12 @@
 PayPal Android SDK release notes
 ================================
 
+2.14.0
+------
+* Updated `minSdkVersion` to 16.  This is the minimum Android version to communicate over TLSv1.2, which is required to support [a Payment Card Industry (PCI) Council mandate](http://blog.pcisecuritystandards.org/migrating-from-ssl-and-early-tls). All organizations that handle credit card information are required to comply with this standard. As part of this obligation, [PayPal is updating its services](https://github.com/paypal/tls-update) to require TLSv1.2 for all HTTPS connections. To override the minSdkVersion, please see [the readme](https://github.com/paypal/PayPal-Android-SDK/blob/develop/sdk/README.md#override-minsdkversion).
+* Update okhttp dependency to 3.2.0.
+* Fixes issue related to non-ascii characters in user agent [#271](https://github.com/paypal/PayPal-Android-SDK/issues/271).
+
 2.13.3
 ------
 * Update okhttp dependency to 3.1.2.
@@ -412,6 +418,10 @@ PayPal Android SDK release notes
 * Fix various localizations
 * Additional localization: ko (Korean)
 * Minor UI cleanup (including [issue 4](https://github.com/paypal/PayPal-Android-SDK/issues/4)).
+
+1.1.1
+-----
+* Skipped
 
 1.1.0
 -----

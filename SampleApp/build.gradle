@@ -3,7 +3,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.2.3'
+        classpath 'com.android.tools.build:gradle:1.5.0'
     }
 }
 
@@ -70,6 +70,11 @@ android {
             }
         }
     }
+
+    productFlavors {
+        general
+        partner
+    }
 }
 
 configurations.all {
@@ -79,9 +84,10 @@ configurations.all {
 
 dependencies {
     if (parent != null) {
-        compile project(path: ':androidSDK', configuration: 'generalDebug')
+        generalCompile project(path: ':androidSDK', configuration: 'generalDebug')
+        partnerCompile project(path: ':androidSDK', configuration: 'partnerDebug')
     } else {
-        compile('com.paypal.sdk:paypal-android-sdk:2.13.3')
+        compile('com.paypal.sdk:paypal-android-sdk:2.14.0')
     }
     compile 'com.google.android.gms:play-services-wallet:8.1.0'
 
