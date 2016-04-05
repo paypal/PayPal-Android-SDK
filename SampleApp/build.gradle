@@ -57,7 +57,7 @@ android {
 
         release{
             minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'paypal-proguard.cnf'
+            proguardFile getDefaultProguardFile('proguard-android.txt')
             signingConfig signingConfigs.release
         }
     }
@@ -87,7 +87,7 @@ dependencies {
         generalCompile project(path: ':androidSDK', configuration: 'generalDebug')
         partnerCompile project(path: ':androidSDK', configuration: 'partnerDebug')
     } else {
-        compile('com.paypal.sdk:paypal-android-sdk:2.14.0')
+        compile('com.paypal.sdk:paypal-android-sdk:2.14.1')
     }
     compile 'com.google.android.gms:play-services-wallet:8.1.0'
 
