@@ -30,12 +30,8 @@ import java.util.Arrays
 import java.util.HashSet
 
 /**
-
- * THIS FILE IS OVERWRITTEN BY `androidSDK/src/|partner>sampleAppJava.
- * ANY UPDATES TO THIS FILE WILL BE REMOVED IN RELEASES.
-
  * Basic sample using the SDK to make a payment or consent to future payments.
-
+ *
  * For sample mobile backend interactions, see
  * https://github.com/paypal/rest-api-sdk-python/tree/master/samples/mobile_backend
  */
@@ -86,10 +82,11 @@ class SampleActivity : Activity() {
      */
     private fun getStuffToBuy(paymentIntent: String): PayPalPayment {
         //--- include an item list, payment amount details
-        val items = arrayOf(PayPalItem("sample item #1", 2, BigDecimal("87.50"), "USD",
-                "sku-12345678"), PayPalItem("free sample item #2", 1, BigDecimal("0.00"),
-                "USD", "sku-zero-price"), PayPalItem("sample item #3 with a longer name", 6, BigDecimal("37.99"),
-                "USD", "sku-33333"))
+        val items = arrayOf(
+                PayPalItem("sample item #1", 2, BigDecimal("87.50"), "USD", "sku-12345678"),
+                PayPalItem("free sample item #2", 1, BigDecimal("0.00"), "USD", "sku-zero-price"),
+                PayPalItem("sample item #3 with a longer name", 6, BigDecimal("37.99"), "USD", "sku-33333")
+        )
         val subtotal = PayPalItem.getItemTotal(items)
         val shipping = BigDecimal("7.21")
         val tax = BigDecimal("4.67")
@@ -108,7 +105,13 @@ class SampleActivity : Activity() {
      * Add app-provided shipping address to payment
      */
     private fun addAppProvidedShippingAddress(paypalPayment: PayPalPayment) {
-        val shippingAddress = ShippingAddress().recipientName("Mom Parker").line1("52 North Main St.").city("Austin").state("TX").postalCode("78729").countryCode("US")
+        val shippingAddress = ShippingAddress()
+                .recipientName("Mom Parker")
+                .line1("52 North Main St.")
+                .city("Austin")
+                .state("TX")
+                .postalCode("78729")
+                .countryCode("US")
         paypalPayment.providedShippingAddress(shippingAddress)
     }
 
@@ -145,7 +148,11 @@ class SampleActivity : Activity() {
          */ val oauthScopes: PayPalOAuthScopes
         get() {
             val scopes = HashSet(
-                    Arrays.asList(PayPalOAuthScopes.PAYPAL_SCOPE_EMAIL, PayPalOAuthScopes.PAYPAL_SCOPE_ADDRESS))
+                    Arrays.asList(
+                            PayPalOAuthScopes.PAYPAL_SCOPE_EMAIL,
+                            PayPalOAuthScopes.PAYPAL_SCOPE_ADDRESS
+                    )
+            )
             return PayPalOAuthScopes(scopes)
         }
 
