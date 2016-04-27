@@ -1,30 +1,28 @@
 buildscript {
+    ext.kotlin_version = '1.0.1-2'
     repositories {
         mavenCentral()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.0.0'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 
 repositories {
-    maven {
-        // Used for downloading dependency com.github.lkorth:device-automator
-        url "https://jitpack.io"
-    }
     mavenCentral()
 }
 
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion '23.0.1'
+    buildToolsVersion '23.0.3'
 
     defaultConfig {
         minSdkVersion 18
         targetSdkVersion 23
-        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
 
     signingConfigs {
@@ -71,35 +69,12 @@ android {
         }
     }
 
-    productFlavors {
-        general
-        partner
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
     }
 }
-
-configurations.all {
-    resolutionStrategy.force 'com.android.support:support-annotations:23.0.1'
-}
-
 
 dependencies {
-    if (parent != null) {
-        generalCompile project(path: ':androidSDK', configuration: 'generalDebug')
-        partnerCompile project(path: ':androidSDK', configuration: 'partnerDebug')
-    } else {
-        compile('com.paypal.sdk:paypal-android-sdk:2.14.2')
-    }
-    compile 'com.google.android.gms:play-services-wallet:8.4.0'
-
-    testCompile 'com.android.support.test.espresso:espresso-core:2.2.1'
-    androidTestCompile 'com.github.lkorth:device-automator:30238040d8'
-    testCompile 'com.google.dexmaker:dexmaker-mockito:1.1'
-    testCompile 'com.android.support.test.espresso:espresso-intents:2.2.1'
-    testCompile 'com.android.support.test.espresso:espresso-web:2.2.1'
-    testCompile 'com.android.support.test:runner:0.4.1'
-    testCompile 'com.android.support.test:rules:0.4.1'
-}
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.12'
+    compile('com.paypal.sdk:paypal-android-sdk:2.14.2')
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }

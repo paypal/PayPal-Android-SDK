@@ -1,6 +1,12 @@
 PayPal Android SDK release notes
 ================================
 
+2.14.2
+------
+* Added a new Kotlin SampleApp!
+* Update card.io to 5.3.4.
+* Update build tools.
+
 2.14.1
 ------
 * Update card.io to 5.3.2.
