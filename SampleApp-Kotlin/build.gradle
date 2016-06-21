@@ -4,7 +4,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.0.0'
+        classpath 'com.android.tools.build:gradle:2.1.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -75,6 +75,6 @@ android {
 }
 
 dependencies {
-    compile('com.paypal.sdk:paypal-android-sdk:2.14.2')
+    compile('com.paypal.sdk:paypal-android-sdk:2.14.3')
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }

@@ -3,7 +3,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.0.0'
+        classpath 'com.android.tools.build:gradle:2.1.0'
     }
 }
 
@@ -87,7 +87,7 @@ dependencies {
         generalCompile project(path: ':androidSDK', configuration: 'generalDebug')
         partnerCompile project(path: ':androidSDK', configuration: 'partnerDebug')
     } else {
-        compile('com.paypal.sdk:paypal-android-sdk:2.14.2')
+        compile('com.paypal.sdk:paypal-android-sdk:2.14.3')
     }
     compile 'com.google.android.gms:play-services-wallet:8.4.0'
 

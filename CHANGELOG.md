@@ -1,6 +1,11 @@
 PayPal Android SDK release notes
 ================================
 
+2.14.3
+------
+* Update card.io to 5.4.0.
+* Update okhttp dependency to 3.3.1.
+
 2.14.2
 ------
 * Added a new Kotlin SampleApp!
