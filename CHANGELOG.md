@@ -1,6 +1,11 @@
 PayPal Android SDK release notes
 ================================
 
+2.14.5
+------
+* Update okhttp dependency to 3.4.1.
+* Fix crash when app does not have READ_PHONE_STATE permission [#321](https://github.com/paypal/PayPal-Android-SDK/issues/321).
+
 2.14.4
 ------
 * Minor bug fixes.

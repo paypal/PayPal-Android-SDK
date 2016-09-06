@@ -30,7 +30,7 @@ The PayPal Android SDK makes it easy to add PayPal and credit card payments to m
 The PayPal Android SDK is now available at [Maven Repository](https://repo1.maven.org/maven2/com/paypal/sdk/paypal-android-sdk/). The latest version is available via `mavenCentral()`:
 
 ```groovy
-compile 'com.paypal.sdk:paypal-android-sdk:2.14.4'
+compile 'com.paypal.sdk:paypal-android-sdk:2.14.5'
 ```
 
 
@@ -131,31 +131,29 @@ If your app initiates a transaction with a currency that turns out to be unsuppo
 
 Future payments does not require card.io card scanning. Also, for single payments, if you do not wish to include the scanning feature of card.io, and only allow manual entry by keyboard, add packagingOptions to remove the `.so` libraries of card.io in your `build.gradle`:
 ```groovy
-android {
-	packagingOptions {
-		exclude 'lib/arm64-v8a/libcardioDecider.so'
-		exclude 'lib/arm64-v8a/libcardioRecognizer.so'
-		exclude 'lib/arm64-v8a/libcardioRecognizer_tegra2.so'
-		exclude 'lib/arm64-v8a/libopencv_core.so'
-		exclude 'lib/arm64-v8a/libopencv_imgproc.so'
-		exclude 'lib/armeabi/libcardioDecider.so'
-		exclude 'lib/armeabi-v7a/libcardioDecider.so'
-		exclude 'lib/armeabi-v7a/libcardioRecognizer.so'
-		exclude 'lib/armeabi-v7a/libcardioRecognizer_tegra2.so'
-		exclude 'lib/armeabi-v7a/libopencv_core.so'
-		exclude 'lib/armeabi-v7a/libopencv_imgproc.so'
-		exclude 'lib/mips/libcardioDecider.so'
-		exclude 'lib/x86/libcardioDecider.so'
-		exclude 'lib/x86/libcardioRecognizer.so'
-		exclude 'lib/x86/libcardioRecognizer_tegra2.so'
-		exclude 'lib/x86/libopencv_core.so'
-		exclude 'lib/x86/libopencv_imgproc.so'
-		exclude 'lib/x86_64/libcardioDecider.so'
-		exclude 'lib/x86_64/libcardioRecognizer.so'
-		exclude 'lib/x86_64/libcardioRecognizer_tegra2.so'
-		exclude 'lib/x86_64/libopencv_core.so'
-		exclude 'lib/x86_64/libopencv_imgproc.so'
-	}
+packagingOptions {
+    exclude 'lib/arm64-v8a/libcardioDecider.so'
+    exclude 'lib/arm64-v8a/libcardioRecognizer.so'
+    exclude 'lib/arm64-v8a/libcardioRecognizer_tegra2.so'
+    exclude 'lib/arm64-v8a/libopencv_core.so'
+    exclude 'lib/arm64-v8a/libopencv_imgproc.so'
+    exclude 'lib/armeabi/libcardioDecider.so'
+    exclude 'lib/armeabi-v7a/libcardioDecider.so'
+    exclude 'lib/armeabi-v7a/libcardioRecognizer.so'
+    exclude 'lib/armeabi-v7a/libcardioRecognizer_tegra2.so'
+    exclude 'lib/armeabi-v7a/libopencv_core.so'
+    exclude 'lib/armeabi-v7a/libopencv_imgproc.so'
+    exclude 'lib/mips/libcardioDecider.so'
+    exclude 'lib/x86/libcardioDecider.so'
+    exclude 'lib/x86/libcardioRecognizer.so'
+    exclude 'lib/x86/libcardioRecognizer_tegra2.so'
+    exclude 'lib/x86/libopencv_core.so'
+    exclude 'lib/x86/libopencv_imgproc.so'
+    exclude 'lib/x86_64/libcardioDecider.so'
+    exclude 'lib/x86_64/libcardioRecognizer.so'
+    exclude 'lib/x86_64/libcardioRecognizer_tegra2.so'
+    exclude 'lib/x86_64/libopencv_core.so'
+    exclude 'lib/x86_64/libopencv_imgproc.so'
 }
 ```
 
@@ -164,7 +162,7 @@ android {
 If you want to completely disable Direct Credit Card (DCC) payments, exclude the card.io library in your application `build.gradle`:
 ```groovy
 dependencies {
-    compile('com.paypal.sdk:paypal-android-sdk:2.14.4') {
+    compile('com.paypal.sdk:paypal-android-sdk:2.14.5') {
         exclude group: 'io.card'
     }
 }

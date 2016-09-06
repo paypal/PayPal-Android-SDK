@@ -17,12 +17,12 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion '23.0.2'
+    compileSdkVersion 24
+    buildToolsVersion '24.0.1'
 
     defaultConfig {
         minSdkVersion 18
-        targetSdkVersion 23
+        targetSdkVersion 24
     }
 
     signingConfigs {
@@ -78,7 +78,7 @@ dependencies {
     if (parent != null) {
         compile project(path: ':androidSDK')
     } else {
-        compile('com.paypal.sdk:paypal-android-sdk:2.14.4')
+        compile('com.paypal.sdk:paypal-android-sdk:2.14.5')
     }
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
