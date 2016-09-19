@@ -1,3 +1,7 @@
+[v.zero](https://www.braintreepayments.com/v.zero) is the easiest way to accept PayPal, credit cards, and many other payment methods. It is the recommended payment acceptance solution for [supported countries](https://www.braintreepayments.com/country-selection).
+
+- [Braintree Android](https://github.com/braintree/braintree_android) <small>([release history](https://github.com/braintree/braintree_android/releases))</small>
+
 PayPal Android SDK
 ==================
 
