@@ -30,7 +30,7 @@ The PayPal Android SDK makes it easy to add PayPal and credit card payments to m
 The PayPal Android SDK is now available at [Maven Repository](https://repo1.maven.org/maven2/com/paypal/sdk/paypal-android-sdk/). The latest version is available via `mavenCentral()`:
 
 ```groovy
-compile 'com.paypal.sdk:paypal-android-sdk:2.14.5'
+compile 'com.paypal.sdk:paypal-android-sdk:2.14.6'
 ```
 
 
@@ -162,7 +162,7 @@ packagingOptions {
 If you want to completely disable Direct Credit Card (DCC) payments, exclude the card.io library in your application `build.gradle`:
 ```groovy
 dependencies {
-    compile('com.paypal.sdk:paypal-android-sdk:2.14.5') {
+    compile('com.paypal.sdk:paypal-android-sdk:2.14.6') {
         exclude group: 'io.card'
     }
 }

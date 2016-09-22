@@ -1,6 +1,11 @@
 PayPal Android SDK release notes
 ================================
 
+2.14.6
+------
+* Fix issue where okhttp cannot find the `TrustManager` [#341](https://github.com/paypal/PayPal-Android-SDK/issues/341).
+* Update card.io to 5.4.1.
+
 2.14.5
 ------
 * Update okhttp dependency to 3.4.1.
