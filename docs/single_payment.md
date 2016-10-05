@@ -1,7 +1,7 @@
 Single Payment
 ==============
 
-Receive a single, immediate payment from your customer, via either PayPal or payment card with [card.io](https://www.card.io/).
+Receive a single, immediate payment from your customer through PayPal.
 
 _If you haven't already, see the [README](../README.md) for an initial overview and instructions for adding the SDK to your project._
 

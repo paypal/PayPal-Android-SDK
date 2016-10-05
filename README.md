@@ -1,7 +1,9 @@
 PayPal Android SDK
 ==================
 
-The PayPal Android SDK makes it easy to add PayPal and credit card payments to mobile apps.
+Those building new integrations should consider using [Braintree Payments](https://www.braintreepayments.com/), a PayPal Company, which is the easiest way to accept PayPal, credit cards, and many other payment methods.
+
+The PayPal Android SDK makes it easy to add PayPal payments to mobile apps.
 
 *This documentation is available in Japanese: [日本語のドキュメント](docs/ja/README.md).*
 
@@ -13,8 +15,7 @@ The PayPal Android SDK makes it easy to add PayPal and credit card payments to m
 - [Add the SDK to Your Project](#add-the-sdk-to-your-project)
 - [Credentials](#credentials)
 - [International Support](#international-support)
-- [Disabling card.io card scanning](#disabling-cardio-card-scanning)
-- [Completely Disabling Direct Credit Card Payments](#completely-disabling-direct-credit-card-payments)
+- [Disabling Direct Credit Card Payments](#disabling-direct-credit-card-payments)
 - [Override `minSdkVersion`](#override-minsdkversion)
 - [Testing](#testing)
 - [Documentation](#documentation)
@@ -30,7 +31,7 @@ The PayPal Android SDK makes it easy to add PayPal and credit card payments to m
 The PayPal Android SDK is now available at [Maven Repository](https://repo1.maven.org/maven2/com/paypal/sdk/paypal-android-sdk/). The latest version is available via `mavenCentral()`:
 
 ```groovy
-compile 'com.paypal.sdk:paypal-android-sdk:2.14.6'
+compile 'com.paypal.sdk:paypal-android-sdk:2.15.0'
 ```
 
 
@@ -46,7 +47,7 @@ Receive a one-time payment from a customer's PayPal account or payment card (sca
 1. [Accept a Single Payment](docs/single_payment.md) and receive back a proof of payment.
 2. On your server, [Verify the Payment](https://developer.paypal.com/webapps/developer/docs/integration/mobile/verify-mobile-payment/), [Capture the Payment](https://developer.paypal.com/webapps/developer/docs/integration/direct/capture-payment/#capture-the-payment), or [Process the Order](https://developer.paypal.com/webapps/developer/docs/integration/direct/create-process-order/) (PayPal Developer site) using PayPal's API.
 
-*Note:* Direct Credit Card (DCC) payments are only available in a [select few countries](https://developer.paypal.com/webapps/developer/docs/integration/direct/rest_api_payment_country_currency_support/#direct-credit-card-payments).  Also, see the [International Support](#international-support) section for details on the specific currencies supported.
+*Note:* Direct Credit Card (DCC) payments are now deprecated in this SDK.  Please use [Braintree Payments](https://www.braintreepayments.com/), a PayPal Company, which is the easiest way to accept PayPal, credit cards, and many other payment methods.  All new integrations should [disable direct credit card payments](#disabling-direct-credit-card-payments).
 
 
 ### Future Payments
@@ -122,47 +123,12 @@ The SDK has built-in translations for many languages and locales. See [javadoc](
 
 The SDK supports multiple currencies. See [the REST API country and currency documentation](https://developer.paypal.com/webapps/developer/docs/integration/direct/rest_api_payment_country_currency_support/) for a complete, up-to-date list.
 
-Note that currency support differs for credit card versus PayPal payments. Unless you disable credit card acceptance (via the `PaymentActivity.EXTRA_SKIP_CREDIT_CARD` intent extra), **we recommend limiting transactions to currencies supported by both payment types.** Currently these are: USD, GBP, CAD, EUR, JPY.
+## Disabling Direct Credit Card Payments
 
-If your app initiates a transaction with a currency that turns out to be unsupported for the user's selected payment type, then the SDK will display an error to the user and write a message to the console log.
-
-
-## Disabling card.io card scanning
-
-Future payments does not require card.io card scanning. Also, for single payments, if you do not wish to include the scanning feature of card.io, and only allow manual entry by keyboard, add packagingOptions to remove the `.so` libraries of card.io in your `build.gradle`:
-```groovy
-packagingOptions {
-    exclude 'lib/arm64-v8a/libcardioDecider.so'
-    exclude 'lib/arm64-v8a/libcardioRecognizer.so'
-    exclude 'lib/arm64-v8a/libcardioRecognizer_tegra2.so'
-    exclude 'lib/arm64-v8a/libopencv_core.so'
-    exclude 'lib/arm64-v8a/libopencv_imgproc.so'
-    exclude 'lib/armeabi/libcardioDecider.so'
-    exclude 'lib/armeabi-v7a/libcardioDecider.so'
-    exclude 'lib/armeabi-v7a/libcardioRecognizer.so'
-    exclude 'lib/armeabi-v7a/libcardioRecognizer_tegra2.so'
-    exclude 'lib/armeabi-v7a/libopencv_core.so'
-    exclude 'lib/armeabi-v7a/libopencv_imgproc.so'
-    exclude 'lib/mips/libcardioDecider.so'
-    exclude 'lib/x86/libcardioDecider.so'
-    exclude 'lib/x86/libcardioRecognizer.so'
-    exclude 'lib/x86/libcardioRecognizer_tegra2.so'
-    exclude 'lib/x86/libopencv_core.so'
-    exclude 'lib/x86/libopencv_imgproc.so'
-    exclude 'lib/x86_64/libcardioDecider.so'
-    exclude 'lib/x86_64/libcardioRecognizer.so'
-    exclude 'lib/x86_64/libcardioRecognizer_tegra2.so'
-    exclude 'lib/x86_64/libopencv_core.so'
-    exclude 'lib/x86_64/libopencv_imgproc.so'
-}
-```
-
-## Completely Disabling Direct Credit Card Payments
-
-If you want to completely disable Direct Credit Card (DCC) payments, exclude the card.io library in your application `build.gradle`:
+Disabling Direct Credit Card Payments is now preferred. To completely disable Direct Credit Card (DCC) payments, exclude the card.io library in your application `build.gradle`:
 ```groovy
 dependencies {
-    compile('com.paypal.sdk:paypal-android-sdk:2.14.6') {
+    compile('com.paypal.sdk:paypal-android-sdk:2.15.0') {
         exclude group: 'io.card'
     }
 }

@@ -1,9 +1,10 @@
 buildscript {
     repositories {
+        jcenter()
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.1.3'
+        classpath 'com.android.tools.build:gradle:2.2.0'
     }
 }
 
@@ -12,6 +13,7 @@ repositories {
         // Used for downloading dependency com.github.lkorth:device-automator
         url "https://jitpack.io"
     }
+    jcenter()
     mavenCentral()
 }
 
@@ -87,7 +89,7 @@ dependencies {
         generalCompile project(path: ':androidSDK', configuration: 'generalDebug')
         partnerCompile project(path: ':androidSDK', configuration: 'partnerDebug')
     } else {
-        compile('com.paypal.sdk:paypal-android-sdk:2.14.6')
+        compile('com.paypal.sdk:paypal-android-sdk:2.15.0')
     }
     compile 'com.google.android.gms:play-services-wallet:8.4.0'
 

@@ -1,6 +1,12 @@
 PayPal Android SDK release notes
 ================================
 
+2.15.0
+------
+* Add support for third-party receivers [iOS #140](https://github.com/paypal/PayPal-iOS-SDK/issues/140). Available as an optional property, `PayPalPayment.payeeEmail()`. This property is only available for PayPal payments, not Direct Credit Card (DCC) payments.
+* Direct Credit Card (DCC) payments are now deprecated in this SDK.  Please use [Braintree Payments](https://www.braintreepayments.com/), a PayPal Company, which is the easiest way to accept PayPal, credit cards, and many other payment methods. All new integrations should [disable direct credit card payments](README.md#disabling-direct-credit-card-payments).
+* Update card.io to 5.4.2.
+
 2.14.6
 ------
 * Fix issue where okhttp cannot find the `TrustManager` [#341](https://github.com/paypal/PayPal-Android-SDK/issues/341).
@@ -36,7 +42,7 @@ PayPal Android SDK release notes
 
 2.14.0
 ------
-* Update `minSdkVersion` to 16.  This is the minimum Android version to communicate over TLSv1.2, which is required to support [a Payment Card Industry (PCI) Council mandate](http://blog.pcisecuritystandards.org/migrating-from-ssl-and-early-tls). All organizations that handle credit card information are required to comply with this standard. As part of this obligation, [PayPal is updating its services](https://github.com/paypal/tls-update) to require TLSv1.2 for all HTTPS connections. To override the minSdkVersion, please see [the readme](https://github.com/paypal/PayPal-Android-SDK/blob/master/README.md#override-minsdkversion).
+* Update `minSdkVersion` to 16.  This is the minimum Android version to communicate over TLSv1.2, which is required to support [a Payment Card Industry (PCI) Council mandate](http://blog.pcisecuritystandards.org/migrating-from-ssl-and-early-tls). All organizations that handle credit card information are required to comply with this standard. As part of this obligation, [PayPal is updating its services](https://github.com/paypal/tls-update) to require TLSv1.2 for all HTTPS connections. To override the minSdkVersion, please see [the readme](README.md#override-minsdkversion).
 * Update okhttp dependency to 3.2.0.
 * Fix issue related to non-ascii characters in user agent [#271](https://github.com/paypal/PayPal-Android-SDK/issues/271).
 
