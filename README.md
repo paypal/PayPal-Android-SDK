@@ -21,7 +21,6 @@ The PayPal Android SDK makes it easy to add PayPal payments to mobile apps.
 - [Documentation](#documentation)
 - [Usability](#usability)
 - [Dependency Conflicts](#dependency-conflicts)
-- [Moving to PayPal Android SDK 2.0](#moving-to-paypal-android-sdk-20)
 - [Next Steps](#next-steps)
 - [Contributing](#contributing)
 - [License](#license)
@@ -160,33 +159,6 @@ During development, use `environment()` in the `PayPalConfiguration` object to c
 ## Usability
 
 User interface appearance and behavior is set within the library itself. For the sake of usability and user experience consistency, apps should not attempt to modify the SDK's behavior beyond the documented methods.
-
-
-## Moving to PayPal Android SDK 2.0
-
-
-### Upgrade from 1.x
-
-As a major version change, the API introduced in 2.0 is not backward compatible with 1.x integrations. However, the SDK still supports all previous single payment functionality. Upgrading is straightforward.
-
-* Most of the non-payment-specific extras of `PayPalPaymentActivity` have been moved to the `PayPalConfiguration` class, and the service startup has changed to take such a configuration object.
-
-
-
-### Older Libraries
-
-PayPal is in the process of replacing the older "Mobile Payments Libraries" (MPL) with the new PayPal Android and iOS SDKs.
-The new Mobile SDKs are based on the PayPal REST API, while the older MPL uses the Adaptive Payments API.
-
-Until features such as third-party, parallel, and chained payments are available, if needed, you can use MPL:
-
- - [MPL on GitHub](https://github.com/paypal/sdk-packages/tree/gh-pages/MPL)
- - [MPL Documentation](https://developer.paypal.com/webapps/developer/docs/classic/mobile/gs_MPL/)
-
-Issues related to MPL should be filed in the [sdk-packages repo](https://github.com/paypal/sdk-packages/).
-
-Developers with existing Express Checkout integrations or who want additional features may wish to use [Mobile Express Checkout](https://developer.paypal.com/webapps/developer/docs/classic/mobile/gs_MEC/)
-in a webview.
 
 
 ## Next Steps
