@@ -20,7 +20,6 @@ The PayPal Android SDK makes it easy to add PayPal payments to mobile apps.
 - [Testing](#testing)
 - [Documentation](#documentation)
 - [Usability](#usability)
-- [Dependency Conflicts](#dependency-conflicts)
 - [Next Steps](#next-steps)
 - [Contributing](#contributing)
 - [License](#license)
