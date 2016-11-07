@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlin_version = '1.0.1-2'
+    ext.kotlin_version = '1.0.4'
     repositories {
         jcenter()
         mavenCentral()
@@ -78,9 +78,9 @@ android {
 
 dependencies {
     if (parent != null) {
-        compile project(path: ':androidSDK')
+        compile project(path: ':androidSDK', configuration: 'generalDebug')
     } else {
-        compile('com.paypal.sdk:paypal-android-sdk:2.15.0')
+        compile('com.paypal.sdk:paypal-android-sdk:2.15.1')
     }
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }

@@ -1,6 +1,11 @@
 PayPal Android SDK release notes
 ================================
 
+2.15.1
+------
+* Removed trustall trustmanager to resolve google play security issue [#364](https://github.com/paypal/PayPal-Android-SDK/issues/364).
+* Shows amount properly in all devices [#357](https://github.com/paypal/PayPal-Android-SDK/issues/357).
+
 2.15.0
 ------
 * Add support for third-party receivers [iOS #140](https://github.com/paypal/PayPal-iOS-SDK/issues/140). Available as an optional property, `PayPalPayment.payeeEmail()`. This property is only available for PayPal payments, not Direct Credit Card (DCC) payments.
