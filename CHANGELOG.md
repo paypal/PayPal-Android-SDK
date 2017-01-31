@@ -1,6 +1,12 @@
 PayPal Android SDK release notes
 ================================
 
+2.15.2
+------
+* Add mandatory res folder in aar during release [#383](https://github.com/paypal/PayPal-Android-SDK/issues/383).
+* Updated card.io to 5.5.0.
+* Updated okhttp to 3.6.0.
+
 2.15.1
 ------
 * Removed trustall trustmanager to resolve google play security issue [#364](https://github.com/paypal/PayPal-Android-SDK/issues/364).

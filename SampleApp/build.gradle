@@ -89,7 +89,7 @@ dependencies {
         generalCompile project(path: ':androidSDK', configuration: 'generalDebug')
         partnerCompile project(path: ':androidSDK', configuration: 'partnerDebug')
     } else {
-        compile('com.paypal.sdk:paypal-android-sdk:2.15.1')
+        compile('com.paypal.sdk:paypal-android-sdk:2.15.2')
     }
     compile 'com.google.android.gms:play-services-wallet:8.4.0'
 

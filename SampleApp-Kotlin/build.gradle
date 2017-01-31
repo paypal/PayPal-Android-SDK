@@ -80,7 +80,7 @@ dependencies {
     if (parent != null) {
         compile project(path: ':androidSDK', configuration: 'generalDebug')
     } else {
-        compile('com.paypal.sdk:paypal-android-sdk:2.15.1')
+        compile('com.paypal.sdk:paypal-android-sdk:2.15.2')
     }
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
