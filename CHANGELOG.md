@@ -1,6 +1,10 @@
 PayPal Android SDK release notes
 ================================
 
+2.15.3
+------
+* Update risk-component to 3.5.7.
+
 2.15.2
 ------
 * Add mandatory res folder in aar during release [#383](https://github.com/paypal/PayPal-Android-SDK/issues/383).
