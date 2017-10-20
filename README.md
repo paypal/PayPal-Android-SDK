@@ -3,8 +3,6 @@
 PayPal Android SDK
 ==================
 
-Those building new integrations should consider using [Braintree Payments](https://www.braintreepayments.com/), a PayPal Company, which is the easiest way to accept PayPal, credit cards, and many other payment methods.
-
 The PayPal Android SDK makes it easy to add PayPal payments to mobile apps.
 
 *This documentation is available in Japanese: [日本語のドキュメント](docs/ja/README.md).*
