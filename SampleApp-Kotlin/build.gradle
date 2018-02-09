@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlin_version = '1.0.4'
+    ext.kotlin_version = '1.1.50'
     repositories {
         jcenter()
         mavenCentral()
@@ -19,12 +19,12 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 24
+    compileSdkVersion 26
     buildToolsVersion '24.0.1'
 
     defaultConfig {
         minSdkVersion 18
-        targetSdkVersion 24
+        targetSdkVersion 26
     }
 
     signingConfigs {
@@ -80,7 +80,7 @@ dependencies {
     if (parent != null) {
         compile project(path: ':androidSDK', configuration: 'generalDebug')
     } else {
-        compile('com.paypal.sdk:paypal-android-sdk:2.15.3')
+        compile('com.paypal.sdk:paypal-android-sdk:2.16.0')
     }
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }

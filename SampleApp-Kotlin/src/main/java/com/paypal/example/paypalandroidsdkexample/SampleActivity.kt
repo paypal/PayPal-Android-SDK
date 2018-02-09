@@ -157,16 +157,17 @@ class SampleActivity : Activity() {
         }
 
     protected fun displayResultText(result: String) {
-        (findViewById(R.id.txtResult) as TextView).text = "Result : " + result
+        var resultView:TextView = findViewById(R.id.txtResult)
+        resultView.text = "Result : " + result
         Toast.makeText(
                 applicationContext,
                 result, Toast.LENGTH_LONG).show()
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQUEST_CODE_PAYMENT) {
             if (resultCode == Activity.RESULT_OK) {
-                val confirm = data.getParcelableExtra<PaymentConfirmation>(PaymentActivity.EXTRA_RESULT_CONFIRMATION)
+                val confirm = data?.getParcelableExtra<PaymentConfirmation>(PaymentActivity.EXTRA_RESULT_CONFIRMATION)
                 if (confirm != null) {
                     try {
                         Log.i(TAG, confirm.toJSONObject().toString(4))
@@ -197,7 +198,7 @@ class SampleActivity : Activity() {
             }
         } else if (requestCode == REQUEST_CODE_FUTURE_PAYMENT) {
             if (resultCode == Activity.RESULT_OK) {
-                val auth = data.getParcelableExtra<PayPalAuthorization>(PayPalFuturePaymentActivity.EXTRA_RESULT_AUTHORIZATION)
+                val auth = data?.getParcelableExtra<PayPalAuthorization>(PayPalFuturePaymentActivity.EXTRA_RESULT_AUTHORIZATION)
                 if (auth != null) {
                     try {
                         Log.i("FuturePaymentExample", auth.toJSONObject().toString(4))
@@ -222,7 +223,7 @@ class SampleActivity : Activity() {
             }
         } else if (requestCode == REQUEST_CODE_PROFILE_SHARING) {
             if (resultCode == Activity.RESULT_OK) {
-                val auth = data.getParcelableExtra<PayPalAuthorization>(PayPalProfileSharingActivity.EXTRA_RESULT_AUTHORIZATION)
+                val auth = data?.getParcelableExtra<PayPalAuthorization>(PayPalProfileSharingActivity.EXTRA_RESULT_AUTHORIZATION)
                 if (auth != null) {
                     try {
                         Log.i("ProfileSharingExample", auth.toJSONObject().toString(4))

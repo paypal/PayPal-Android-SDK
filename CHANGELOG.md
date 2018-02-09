@@ -1,6 +1,12 @@
 PayPal Android SDK release notes
 ================================
 
+2.16.0
+------
+* Return transactionId on success [#402](https://github.com/paypal/PayPal-Android-SDK/issues/402).
+* Update translations.
+* Update SSL pinning cerificates.
+
 2.15.3
 ------
 * Update risk-component to 3.5.7.
